@@ -17,23 +17,22 @@ export default class App extends Component {
     this.socket.on("receiveSentence", data => {
       data = JSON.parse(data);
       this.setState({ sentence: data.sentence, traductions: data.traductions });
-    }
-    );
+    });
   }
 
   sendMessage = () => { this.socket.emit("sendSentence", this.state.input) }
+  sendTraduction = (traduction) => { this.socket.emit("sendTraduction", traduction) }
   handleChange = (input) => { this.setState({ input }) }
 
   render() {
-    console.log(this.state.traductions)
     return (
       <View style={styles.container}>
         <Text>
-          {this.state.sentence}
+          { this.state.sentence }
         </Text>
         <View>
           {this.state.traductions.map(
-            (item, key) => <Button success title={item} onPress={() => console.log("id:", key)} key={key} >
+            (item, key) => <Button success title={item} onPress={ this.sendTraduction(item) } key={key} >
               <Text>
                 {item}
               </Text>
