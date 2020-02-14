@@ -3,6 +3,10 @@ import { StyleSheet, Text, View, TextInput} from 'react-native';
 import { Button } from 'native-base';
 import socketIOClient from 'socket.io-client';
 
+import config from './config';
+
+console.log({ config })
+
 export default class App extends Component {
   state = {
     input: null,
@@ -12,7 +16,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.socket = socketIOClient("http://127.0.0.1:5001/", { "forceBase64": 1 });
+    this.socket = socketIOClient(`http://${config.endpoint}:5001/`, { "forceBase64": 1 });
         this.socket.on("receiveSentence", data => {
         data = JSON.parse(data);
         this.setState({sentencesAndtraductions: data});
