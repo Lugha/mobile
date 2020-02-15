@@ -6,9 +6,13 @@ const gameRound = (props) => {
 
     return (
         <React.Fragment>
-            <Button onPress={() => props.startNextRound() }>
+            <Text>
+                La réponse était:
+                { props.explaination }
+            </Text>
+            <Button onPress={ () => props.startNextRound() }>
                 <Text>
-                    NextRound
+                    J'ai compris
                 </Text>
             </Button>
         </React.Fragment>
