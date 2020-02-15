@@ -5,29 +5,24 @@ import socketIOClient from 'socket.io-client';
 
 import config from '../../config.json';
 
-console.log('couille')
-
 class GameBuilder extends Component {
     state = {
         input: null,
         gameRoundData: null,
         finished: false,
-      }
-    
-    getNewRoundData = () => {
+    }
+
+    getNewGameRoundData = () => {
         this.socket.emit("getRandomRound");
     }
 
     componentDidMount() {
-        this.socket = socketIOClient(`http://127.0.0.1:5001/`, { "forceBase64": 1 });
+        this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
-            console.log('yooo', data)
             data = JSON.parse(data);
-            console.log('coucou', data)
             this.setState({gameRoundData: data});
-            console.log(this.state.gameRoundData)
         });
-        getNewRoundData();
+        this.getNewGameRoundData();
     }
 
     render () {
@@ -39,7 +34,7 @@ class GameBuilder extends Component {
             traductions = []
             console.log(this.state.gameRoundData)
             this.state.gameRoundData.traductions.map(
-                (item, key) => traductions.push(<Button success onPress={() => this.getNewgameRoundData()} title={item} key={key} >
+                (item, key) => traductions.push(<Button success onPress={() => this.getNewGameRoundData()} title={item} key={key} >
                     <Text>
                         {item}
                     </Text>
