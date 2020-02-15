@@ -10,11 +10,10 @@ class GameBuilder extends Component {
         input: null,
         gameRoundData: null,
         finished: false,
-    }
-
-    getNewGameRoundData = () => {
-        this.socket.emit("getRandomRound");
-    }
+      }
+    
+    
+    getNewGameRoundData = () => this.socket.emit("getRandomRound");
 
     componentDidMount() {
         this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
@@ -25,6 +24,8 @@ class GameBuilder extends Component {
         this.getNewGameRoundData();
     }
 
+    handleAnswer = success => success ? this.getNewGameRoundData() : this.setState({finished: true});
+
     render () {
         let sentence = <Text>LOADING sentence ...</Text>
         let traductions = <Text>LOADING traductions ...</Text>
@@ -34,12 +35,15 @@ class GameBuilder extends Component {
             traductions = []
             console.log(this.state.gameRoundData)
             this.state.gameRoundData.traductions.map(
-                (item, key) => traductions.push(<Button success onPress={() => this.getNewGameRoundData()} title={item} key={key} >
+                (item, key) => traductions.push(<Button success onPress={() => this.handleAnswer(item.success)} title={item} key={key} >
                     <Text>
-                        {item}
+                        {item.text}
                     </Text>
                     </Button>)
             )
+        } else if (this.state.finished){
+            sentence = <Text></Text>
+            traductions = <Text>Finish !</Text>
         }
 
         return (
