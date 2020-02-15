@@ -10,54 +10,42 @@ console.log('couille')
 class GameBuilder extends Component {
     state = {
         input: null,
-        roundData: [],
-        // roundIndex: 0,
+        gameRoundData: [],
         finished: false,
       }
     
+    getNewRoundData = () => {
+        this.socket.emit("getRandomRound");
+    }
+
     componentDidMount() {
         this.socket = socketIOClient(`http://127.0.0.1:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
+            console.log('yooo', data)
             data = JSON.parse(data);
-            this.setState({roundData: data});
+            console.log('coucou', data)
+            this.setState({gameRoundData: data});
+            console.log(this.state.gameRoundData)
         });
+        getNewRoundData();
     }
-
-    getNewRoundData = () => {
-        this.socket.on("getRandomRound", data => {
-            data = JSON.parse(data);
-            this.setState({roundData: data});
-        });
-    }
-    // sendTraduction = () => {
-    //     if (this.state.roundIndex === this.state.testData.length - 1) {
-    //         this.setState({ finished: true })
-    //         return
-    //     }
-    //     this.setState({roundIndex: this.state.roundIndex + 1})
-    // }
-
-
 
     render () {
         let sentence = <Text>LOADING sentence ...</Text>
         let traductions = <Text>LOADING traductions ...</Text>
         
-        if (this.state.roundData && !this.state.finished) {
-            sentence = this.state.roundData.sentence
+        if (this.state.gameRoundData && !this.state.finished) {
+            sentence = this.state.gameRoundData.sentence
             traductions = []
-            this.state.roundData.traductions.map(
-                (item, key) => traductions.push(<Button success onPress={() => this.getNewRoundData()} title={item} key={key} >
+            console.log(this.state.gameRoundData)
+            this.state.gameRoundData.traductions.map(
+                (item, key) => traductions.push(<Button success onPress={() => this.getNewgameRoundData()} title={item} key={key} >
                     <Text>
                         {item}
                     </Text>
                     </Button>)
             )
-        } 
-        // else if (this.state.finished) {
-        //     sentence = <Text />
-        //     traductions = <Text>FINISH !</Text>
-        // }
+        }
 
         return (
             <View style={styles.container}>
