@@ -12,7 +12,7 @@ class GameBuilder extends Component {
         gameRoundTotal: 5, 
         gameRoundData: null,
         finishedGameRound: false,
-        currentGameRound: 0,
+        currentGameRound: 1,
         finishedGame: false,
     }
 
