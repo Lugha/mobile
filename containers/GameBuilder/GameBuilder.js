@@ -12,9 +12,6 @@ class GameBuilder extends Component {
         finished: false,
       }
     
-    
-    getNewGameRoundData = () => this.socket.emit("getRandomRound");
-
     componentDidMount() {
         this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
@@ -23,27 +20,37 @@ class GameBuilder extends Component {
         });
         this.getNewGameRoundData();
     }
+    getNewGameRoundData = () => this.socket.emit("getRandomRound");
 
     handleAnswer = success => success ? this.getNewGameRoundData() : this.setState({finished: true});
+    replay = () => {
+        this.getNewGameRoundData();
+        this.setState({ finished: false });
+    }
 
     render () {
         let sentence = <Text>LOADING sentence ...</Text>
         let traductions = <Text>LOADING traductions ...</Text>
+        let replay = null
         
         if (this.state.gameRoundData && !this.state.finished) {
             sentence = this.state.gameRoundData.sentence
             traductions = []
-            console.log(this.state.gameRoundData)
             this.state.gameRoundData.traductions.map(
                 (item, key) => traductions.push(<Button success onPress={() => this.handleAnswer(item.success)} title={item} key={key} >
                     <Text>
-                        {item.text}
+                         { item.text }
                     </Text>
                     </Button>)
             )
         } else if (this.state.finished){
             sentence = <Text></Text>
             traductions = <Text>Finish !</Text>
+            replay = <Button onPress={() => this.replay() }>
+                <Text>
+                    Replay
+                </Text>
+            </Button>
         }
 
         return (
@@ -53,6 +60,9 @@ class GameBuilder extends Component {
                 </Text>
                 <View>
                     {traductions}
+                </View>
+                <View>
+                    {replay}
                 </View>
             </View>
         )
