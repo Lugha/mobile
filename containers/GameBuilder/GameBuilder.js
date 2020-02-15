@@ -24,6 +24,8 @@ class GameBuilder extends Component {
         this.getNewGameRoundData();
     }
 
+    getNewGameRoundData = () => this.socket.emit('getRandomRound');
+
     handleAnswer = success => {
         if (!success) {
             (this.state.currentGameRound == this.state.gameRoundTotal) ? this.setState({finishedGame: true}) : null;
@@ -42,7 +44,7 @@ class GameBuilder extends Component {
     }
 
     render () {
-        gameEvent = <Text>Loading ...</Text>;
+        gameEvent = <Text>En attente des données de partie ...</Text>;
 
         if (this.state.gameRoundData && !this.state.finishedGameRound) {
             gameEvent = <GameRound 
