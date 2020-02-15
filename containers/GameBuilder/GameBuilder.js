@@ -10,7 +10,7 @@ console.log('couille')
 class GameBuilder extends Component {
     state = {
         input: null,
-        gameRoundData: [],
+        gameRoundData: null,
         finished: false,
       }
     
