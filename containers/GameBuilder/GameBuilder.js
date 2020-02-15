@@ -7,13 +7,12 @@ import config from '../../config.json';
 
 class GameBuilder extends Component {
     state = {
-        input: null,
         gameRoundData: null,
         finished: false,
       }
     
     componentDidMount() {
-        this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
+        this.socket = socketIOClient(`http://127.0.0.1:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
             data = JSON.parse(data);
             this.setState({gameRoundData: data});
@@ -23,9 +22,10 @@ class GameBuilder extends Component {
     getNewGameRoundData = () => this.socket.emit("getRandomRound");
 
     handleAnswer = success => success ? this.getNewGameRoundData() : this.setState({finished: true});
-    replay = () => {
+    
+    replayGameStep = () => {
         this.getNewGameRoundData();
-        this.setState({ finished: false });
+        this.setState({finished: false, gameRoundData: null});
     }
 
     render () {
@@ -46,7 +46,7 @@ class GameBuilder extends Component {
         } else if (this.state.finished){
             sentence = <Text></Text>
             traductions = <Text>Finish !</Text>
-            replay = <Button onPress={() => this.replay() }>
+            replay = <Button onPress={() => this.replayGameStep() }>
                 <Text>
                     Replay
                 </Text>
