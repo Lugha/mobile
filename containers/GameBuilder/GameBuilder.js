@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View} from 'react-native';
-import { Button } from 'native-base';
 import socketIOClient from 'socket.io-client';
 
-import config from '../../config.json';
+import GameRound from '../../components/Game/GameRound/GameRound'
+import GameEndRound from '../../components/Game/GameEndRound/GameEndRound'
 
 class GameBuilder extends Component {
     state = {
         gameRoundData: null,
         finished: false,
-      }
+    }
     
     componentDidMount() {
         this.socket = socketIOClient(`http://127.0.0.1:5001/`, { "forceBase64": 1 });
@@ -23,47 +23,29 @@ class GameBuilder extends Component {
 
     handleAnswer = success => success ? this.getNewGameRoundData() : this.setState({finished: true});
     
-    replayGameStep = () => {
+    replayGameRound = () => {
         this.getNewGameRoundData();
         this.setState({finished: false, gameRoundData: null});
     }
 
     render () {
-        let sentence = <Text>LOADING sentence ...</Text>
-        let traductions = <Text>LOADING traductions ...</Text>
-        let replay = null
-        
+        gameRound = null;
+        gameEndRound = null;
+        loading = null;
+
         if (this.state.gameRoundData && !this.state.finished) {
-            sentence = this.state.gameRoundData.sentence
-            traductions = []
-            this.state.gameRoundData.traductions.map(
-                (item, key) => traductions.push(<Button success onPress={() => this.handleAnswer(item.success)} title={item} key={key} >
-                    <Text>
-                         { item.text }
-                    </Text>
-                    </Button>)
-            )
-        } else if (this.state.finished){
-            sentence = <Text></Text>
-            traductions = <Text>Finish !</Text>
-            replay = <Button onPress={() => this.replayGameStep() }>
-                <Text>
-                    Replay
-                </Text>
-            </Button>
+            gameRound = <GameRound sentence={this.state.gameRoundData.sentence} traductions={this.state.gameRoundData.traductions} handleAnswer={this.handleAnswer} />;
+        } else if (this.state.finished) {
+            gameEndRound = <GameEndRound startNextRound={this.replayGameRound}/>;
+        } else {
+            loading = <Text>Loading ...</Text>;
         }
 
         return (
             <View style={styles.container}>
-                <Text>
-                    {sentence}
-                </Text>
-                <View>
-                    {traductions}
-                </View>
-                <View>
-                    {replay}
-                </View>
+                {gameRound}
+                {gameEndRound}
+                {loading}
             </View>
         )
     }
@@ -76,12 +58,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    input: {
-      height: 30,
-      width: "80%",
-      borderColor: 'gray',
-      borderWidth: 1
-    }
 });
 
 export default GameBuilder;
