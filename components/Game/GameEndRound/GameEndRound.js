@@ -8,7 +8,7 @@ const gameRound = (props) => {
         <React.Fragment>
             <Button onPress={() => props.startNextRound() }>
                 <Text>
-                    Replay
+                    NextRound
                 </Text>
             </Button>
         </React.Fragment>
