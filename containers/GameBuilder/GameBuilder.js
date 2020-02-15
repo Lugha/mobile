@@ -16,14 +16,13 @@ class GameBuilder extends Component {
     }
 
     componentDidMount() {
-        this.socket = socketIOClient(`http://127.0.0.1:5001/`, { "forceBase64": 1 });
+        this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
             data = JSON.parse(data);
             this.setState({gameRoundData: data, currentGameRound: 1});
         });
         this.getNewGameRoundData();
     }
-    getNewGameRoundData = () => this.socket.emit("getRandomRound");
 
     handleAnswer = success => {
         if (!success) {
@@ -54,7 +53,7 @@ class GameBuilder extends Component {
         } else if (this.state.finishedGame) {
             gameEvent = <GameEnd />;
         } else if (this.state.finishedGameRound) {
-            gameEvent = <GameEndRound startNextRound={this.startGameRound}/>;
+            gameEvent = <GameEndRound startNextRound={this.startGameRound} explaination="c'est une explication" />;
         }
 
         return (
