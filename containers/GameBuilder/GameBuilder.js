@@ -4,6 +4,7 @@ import socketIOClient from 'socket.io-client';
 
 import GameRound from '../../components/Game/GameRound/GameRound'
 import GameEndRound from '../../components/Game/GameEndRound/GameEndRound'
+import GameEnd from '../../components/Game/GameEnd/GameEnd'
 
 class GameBuilder extends Component {
     
@@ -19,7 +20,7 @@ class GameBuilder extends Component {
         this.socket = socketIOClient(`http://192.168.0.30:5001/`, { "forceBase64": 1 });
         this.socket.on("getRandomRound", data => {
             data = JSON.parse(data);
-            this.setState({gameRoundData: data, currentGameRound: 1});
+            this.setState({gameRoundData: data});
         });
         this.getNewGameRoundData();
     }
@@ -28,7 +29,7 @@ class GameBuilder extends Component {
 
     handleAnswer = success => {
         if (!success) {
-            (this.state.currentGameRound == this.state.gameRoundTotal) ? this.setState({finishedGame: true}) : null;
+            (this.state.currentGameRound === this.state.gameRoundTotal) ? this.setState({finishedGame: true}) : null;
             this.setState({finishedGameRound: true});
             return;
         }
@@ -40,7 +41,8 @@ class GameBuilder extends Component {
         this.setState({
             finishedGameRound: false, 
             gameRoundData: null, 
-            currentGameRound: this.state.currentGameRound + 1});
+            currentGameRound: this.state.currentGameRound + 1
+        });
     }
 
     render () {
