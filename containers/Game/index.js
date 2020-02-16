@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Game = ({ questions }) => {
+const Game = ({ questions, socket }) => {
   console.log(questions);
   return (
     <View style={styles.view}>

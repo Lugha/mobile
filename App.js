@@ -24,7 +24,7 @@ function App() {
   return (
     <Provider store={store}>
       <StatusBar hidden />
-      <Game />
+      <Game socket={socket} />
     </Provider>
   );
 }
