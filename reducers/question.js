@@ -8,7 +8,8 @@ export default function(state, action) {
   switch (action.type) {
     case STORE_QUESTION:
       const newState = cloneObject(state);
-      newState.questions = action.questions;
+      console.log(action);
+      newState.questions = action.result;
       return newState;
     default:
       return {};

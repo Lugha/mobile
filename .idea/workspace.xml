@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e20b2f0-0f55-465b-ba1b-5a0a90528c76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/containers/GameBuilder/GameBuilder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/actions/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/actions/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/containers/Game/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/containers/Game/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/socketManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/socketManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reducers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/reducers/question.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="263" />
