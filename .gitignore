@@ -1,6 +1,7 @@
-node_modules
+node_modules/
 yarn-error.log*
 .idea/
+.idea/*
 .expo/*
 npm-debug.*
 *.jks

@@ -1,36 +1,19 @@
-import React, { Component, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { connect } from "react-redux";
-import socketIOClient from "socket.io-client";
 import { YellowBox } from "react-native";
-import { Button } from "native-base";
 import { requestQuestions, subscribeQuestions } from "../../actions/questions";
+import GameView from "../../components/Game/GameView";
 
 YellowBox.ignoreWarnings(["Setting a timer"]);
 
-const styles = StyleSheet.create({
-  view: {
-    flex: 1,
-    alignSelf: "center",
-    justifyContent: "center"
-  }
-});
-
-const Game = ({ question, requestQuestions, subscribeQuestions }) => {
+const Game = ({ questions, requestQuestions, subscribeQuestions }) => {
   subscribeQuestions();
 
-  console.log("question", question);
-  return (
-    <View style={styles.view}>
-      <Button onPress={requestQuestions}>
-        <Text>Game Container</Text>
-      </Button>
-    </View>
-  );
+  return <GameView questions={questions} requestQuestions={requestQuestions} />;
 };
 
 const mapStateToProps = state => ({
-  question: state.question
+  questions: state.questions
 });
 
 export default connect(mapStateToProps, {
