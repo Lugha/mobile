@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import socketIOClient from "socket.io-client";
 import { YellowBox } from "react-native";
 import { Button } from "native-base";
-import { requestQuestions, subscribeQuestions } from "../../actions/question";
+import { requestQuestions, subscribeQuestions } from "../../actions/questions";
 
 YellowBox.ignoreWarnings(["Setting a timer"]);
 

@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
 
-import question from "../actions/question";
+import questions from "../actions/questions";
 
 function socketManager() {
   const socket = socketIOClient.connect(`http://192.168.0.32:5001/`, {
