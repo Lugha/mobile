@@ -16,17 +16,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const Game = ({ questions, requestQuestions, subscribeQuestions }) => {
+const Game = ({ question, requestQuestions, subscribeQuestions }) => {
   subscribeQuestions();
 
-  console.log("question", questions);
+  console.log("question", question);
   return (
     <View style={styles.view}>
-      <Button
-        onPress={() => {
-          requestQuestions();
-        }}
-      >
+      <Button onPress={requestQuestions}>
         <Text>Game Container</Text>
       </Button>
     </View>
@@ -34,7 +30,7 @@ const Game = ({ questions, requestQuestions, subscribeQuestions }) => {
 };
 
 const mapStateToProps = state => ({
-  questions: state.questions
+  question: state.question
 });
 
 export default connect(mapStateToProps, {
