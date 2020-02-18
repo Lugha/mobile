@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Sentence from "./Sentence";
 import AnswersView from "./AnswersView";
+import { Container, Content } from "native-base";
 
 const styles = StyleSheet.create({
   view: {
@@ -13,15 +14,14 @@ const styles = StyleSheet.create({
 });
 
 const GameView = ({ questions, requestQuestions }) => {
-  console.log("questions", questions);
   return (
-    <View style={styles.view}>
+    <Container style={styles.view}>
       <Sentence sentence={questions.sentence} />
       <AnswersView
         requestQuestions={requestQuestions}
         translations={questions.traductions}
       />
-    </View>
+    </Container>
   );
 };
 
