@@ -18,5 +18,6 @@ export const unsubscribeQuestions = () => {
 
 export const requestQuestions = () => ({
   event: GET_RANDOM_ROUND,
-  emit: true
+  emit: true,
+  payload: {}
 });

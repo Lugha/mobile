@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameView = ({ questions, requestQuestions }) => {
+const GameView = ({ questions, goToNextRound }) => {
   return (
     <Container style={styles.container}>
       <Score />
       <Sentence sentence={questions.sentence} />
       <AnswersView
-        requestQuestions={requestQuestions}
+        goToNextRound={goToNextRound}
         translations={questions.traductions}
       />
     </Container>

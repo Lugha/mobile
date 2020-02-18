@@ -14,13 +14,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const noDataCase = requestQuestions => (
-  <Button onPress={requestQuestions}>
+const noDataCase = goToNextRound => (
+  <Button onPress={() => goToNextRound(false)}>
     <Text>Request question</Text>
   </Button>
 );
 
-function AnswersView({ translations, requestQuestions }) {
+function AnswersView({ translations, goToNextRound }) {
   return (
     <Container style={styles.view}>
       <Content>
@@ -29,10 +29,10 @@ function AnswersView({ translations, requestQuestions }) {
               <Answer
                 key={index}
                 translation={translation}
-                requestQuestions={requestQuestions}
+                goToNextRound={goToNextRound}
               />
             ))
-          : noDataCase(requestQuestions)}
+          : noDataCase(goToNextRound)}
       </Content>
     </Container>
   );
