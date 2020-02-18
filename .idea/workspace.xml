@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e20b2f0-0f55-465b-ba1b-5a0a90528c76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/Answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Game/Answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/AnswersView.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Game/AnswersView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/GameRound/GameRound.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/GameView.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Game/GameView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/Sentence.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Game/Sentence.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/actions/questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/actions/questions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/containers/Game/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/containers/Game/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

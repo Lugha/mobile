@@ -28,12 +28,15 @@ const styles = StyleSheet.create({
 const App = () => {
   const [isReady, changeReady] = useState(false);
 
-  useEffect(async () => {
-    await Font.loadAsync({
-      Roboto: require("native-base/Fonts/Roboto.ttf"),
-      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
-    });
-    changeReady(true);
+  useEffect(() => {
+    async function loadFont() {
+      await Font.loadAsync({
+        Roboto: require("native-base/Fonts/Roboto.ttf"),
+        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+      });
+      changeReady(true);
+    }
+    loadFont();
   }, []);
 
   if (!isReady) {
