@@ -1,15 +1,15 @@
 import React from "react";
 
 import { Button, Text } from "native-base";
+import { StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+  container: { padding: 20, margin: 20 }
+});
 
 function Answer({ requestQuestions, translation }) {
   return (
-    <Button
-      style={{ padding: 20, margin: 20 }}
-      block
-      rounded
-      onPress={requestQuestions}
-    >
+    <Button style={styles.container} block rounded onPress={requestQuestions}>
       <Text>{translation.text}</Text>
     </Button>
   );

@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
+import { Container } from "native-base";
 
 const styles = StyleSheet.create({
   sentence: {
@@ -12,9 +13,9 @@ const styles = StyleSheet.create({
 
 const Sentence = ({ sentence }) => {
   return (
-    <View style={styles.sentence}>
+    <Container style={styles.sentence}>
       <Text>{sentence}</Text>
-    </View>
+    </Container>
   );
 };
 
