@@ -1,25 +1,22 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableHighlight
-} from "react-native";
 
-// import { Button } from "native-base";
+import { Button, Text } from "native-base";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  answer: {
-    margin: 30
-  }
+  container: { padding: 20, margin: 20 }
 });
 
-function Answer({ requestQuestions, translation }) {
+function Answer({ goToNextRound, translation }) {
   return (
-    <View styles={styles.answer}>
-      <Button title={translation.text} onPress={requestQuestions} />
-    </View>
+    <Button
+      style={styles.container}
+      block
+      rounded
+      onPress={() => goToNextRound(translation.success)}
+    >
+      <Text>{translation.text}</Text>
+    </Button>
   );
 }
 

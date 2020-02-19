@@ -2,9 +2,11 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Sentence from "./Sentence";
 import AnswersView from "./AnswersView";
+import { Container, Content } from "native-base";
+import Score from "../../containers/Score";
 
 const styles = StyleSheet.create({
-  view: {
+  container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
@@ -12,16 +14,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameView = ({ questions, requestQuestions }) => {
-  console.log("questions", questions);
+const GameView = ({ questions, goToNextRound }) => {
   return (
-    <View style={styles.view}>
+    <Container style={styles.container}>
+      <Score />
       <Sentence sentence={questions.sentence} />
       <AnswersView
-        requestQuestions={requestQuestions}
+        goToNextRound={goToNextRound}
         translations={questions.traductions}
       />
-    </View>
+    </Container>
   );
 };
 

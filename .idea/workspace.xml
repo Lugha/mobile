@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e20b2f0-0f55-465b-ba1b-5a0a90528c76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/GameEnd/GameEnd.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/GameEndRound/GameEndRound.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Game/GameRound/GameRound.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Game/GameRound/GameRound.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/containers/Game/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/containers/Game/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middlewares/socketManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/socketManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
