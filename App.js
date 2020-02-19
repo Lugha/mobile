@@ -9,10 +9,14 @@ import * as Font from "expo-font";
 import socketManager from "./middlewares/socketManager";
 import Game from "./containers/Game";
 import reducers from "./reducers";
+import logger from "redux-logger";
 
 const initialState = {};
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancer(applyMiddleware(socketManager()));
+const enhancer = composeEnhancer(
+  applyMiddleware(logger),
+  applyMiddleware(socketManager())
+);
 
 const store = createStore(reducers, initialState, enhancer);
 

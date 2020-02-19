@@ -22,7 +22,6 @@ const Game = ({
   const [round, useRound] = useState(0);
 
   function goToNextRound(success) {
-    console.log(score);
     if (success) {
       updateScore(score + 5);
     }
