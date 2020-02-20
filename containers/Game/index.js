@@ -12,6 +12,7 @@ import { updateScore } from "../../actions/score";
 YellowBox.ignoreWarnings(["Setting a timer"]);
 
 const Game = ({
+  navigation,
   questions,
   score,
   requestQuestions,
@@ -31,6 +32,7 @@ const Game = ({
 
   useEffect(() => {
     subscribeQuestions();
+    requestQuestions();
 
     return () => {
       unsubscribeQuestions();

@@ -14,25 +14,20 @@ const styles = StyleSheet.create({
   }
 });
 
-const noDataCase = goToNextRound => (
-  <Button onPress={() => goToNextRound(false)}>
-    <Text>Request question</Text>
-  </Button>
-);
-
 function AnswersView({ translations, goToNextRound }) {
   return (
     <Container style={styles.view}>
       <Content>
-        {translations
-          ? translations.map((translation, index) => (
+        { translations && 
+          translations.map((translation, index) => (
               <Answer
                 key={index}
                 translation={translation}
                 goToNextRound={goToNextRound}
               />
-            ))
-          : noDataCase(goToNextRound)}
+            )
+          )
+        }
       </Content>
     </Container>
   );

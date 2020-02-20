@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { StatusBar, StyleSheet, View } from "react-native";
 
@@ -7,7 +8,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import * as Font from "expo-font";
 import socketManager from "./middlewares/socketManager";
-import Game from "./containers/Game";
+import AppNavigator from "./containers";
 import reducers from "./reducers";
 import logger from "redux-logger";
 
@@ -55,7 +56,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <StatusBar hidden />
-      <Game />
+      <AppNavigator />
     </Provider>
   );
 };
