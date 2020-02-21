@@ -5,7 +5,8 @@ export const STORE_QUESTION = "STORE_QUESTION";
 export const subscribeQuestions = () => {
   return {
     handle: STORE_QUESTION,
-    event: GET_RANDOM_ROUND
+    event: GET_RANDOM_ROUND,
+    listen: true
   };
 };
 

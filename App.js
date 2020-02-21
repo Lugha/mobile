@@ -12,6 +12,8 @@ import AppNavigator from "./containers";
 import reducers from "./reducers";
 import logger from "redux-logger";
 
+console.disableYellowBox = true;
+
 const initialState = {};
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancer(
