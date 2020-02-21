@@ -1,5 +1,13 @@
 export const CREATE_ROOM = "CREATE_ROOM";
 export const JOIN_ROOM = "JOIN_ROOM";
+export const UPDATE_ROOM = "UPDATE_ROOM";
+
+export const updateRoom = room => {
+  return {
+    type: UPDATE_ROOM,
+    room
+  };
+};
 
 export const subscribeCreateRoom = () => {
   return {

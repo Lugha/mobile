@@ -5,8 +5,10 @@ import {
   subscribeQuestions,
   unsubscribeQuestions
 } from "../../actions/questions";
-import GameView from "../../components/Game/GameView";
 import { updateScore } from "../../actions/score";
+import { emitEndRound } from '../../actions/game';
+import { updateRoom } from '../../actions/room';
+import GameView from "../../components/Game/GameView";
 
 const Game = ({
   navigation,
@@ -16,7 +18,9 @@ const Game = ({
   requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions,
-  updateScore
+  updateScore,
+  emitEndRound,
+  updateRoom
 }) => {
   const [round, useRound] = useState(0);
 
@@ -24,14 +28,22 @@ const Game = ({
     if (success) {
       updateScore(score + 5);
     }
+    //emitEndRound(room);
     useRound(round + 1);
+  }
+
+  function quitGame() {
+    unsubscribeQuestions();
+    updateScore(0);
+    updateRoom(null);
+    navigation.navigate('Menu');
   }
 
   useEffect(() => {
     subscribeQuestions();
   }, []);
 
-  return <GameView questions={questions} goToNextRound={goToNextRound} />;
+  return <GameView questions={questions} goToNextRound={goToNextRound} quitGame={quitGame} />;
 };
 
 const mapStateToProps = state => ({
@@ -44,5 +56,7 @@ export default connect(mapStateToProps, {
   requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions,
-  updateScore
+  updateScore,
+  emitEndRound,
+  updateRoom
 })(Game);

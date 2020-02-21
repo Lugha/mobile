@@ -5,7 +5,12 @@ import { connect } from "react-redux";
 
 import socketManager from "../../middlewares/socketManager";
 
-import { subscribeCreateRoom, unsubscribeCreateRoom, emitCreateRoom, emitJoinRoom } from "../../actions/room";
+import {
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom
+} from "../../actions/room";
 
 import Game from "../../containers/Game";
 
@@ -33,7 +38,7 @@ const CreateRoom = ({
     } else {
       emitJoinRoom(room);
       unsubscribeCreateRoom();
-      navigation.navigate('Game');
+      navigation.navigate("Game");
     }
   }, [room]);
 
