@@ -5,8 +5,7 @@ export const STORE_QUESTION = "STORE_QUESTION";
 export const subscribeQuestions = () => {
   return {
     handle: STORE_QUESTION,
-    event: GET_RANDOM_ROUND,
-    listen: true
+    event: GET_RANDOM_ROUND
   };
 };
 
@@ -17,8 +16,8 @@ export const unsubscribeQuestions = () => {
   };
 };
 
-export const requestQuestions = () => ({
+export const requestQuestions = room => ({
   event: GET_RANDOM_ROUND,
   emit: true,
-  payload: {}
+  payload: { room }
 });

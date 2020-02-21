@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import socketManager from "../../middlewares/socketManager";
 
-import { subscribeCreateRoom } from "../../actions/room";
+import { subscribeCreateRoom, unsubscribeCreateRoom, emitCreateRoom, emitJoinRoom } from "../../actions/room";
 
 import Game from "../../containers/Game";
 
@@ -18,10 +18,24 @@ const styles = StyleSheet.create({
   }
 });
 
-const CreateRoom = ({ navigation, room, subscribeCreateRoom }) => {
+const CreateRoom = ({
+  navigation,
+  room,
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom
+}) => {
   useEffect(() => {
-    subscribeCreateRoom();
-  }, []);
+    if (!room) {
+      subscribeCreateRoom();
+      emitCreateRoom();
+    } else {
+      emitJoinRoom(room);
+      unsubscribeCreateRoom();
+      navigation.navigate('Game');
+    }
+  }, [room]);
 
   return (
     <Container style={styles.container}>
@@ -36,5 +50,8 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  subscribeCreateRoom
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom
 })(CreateRoom);

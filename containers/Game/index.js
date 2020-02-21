@@ -12,6 +12,7 @@ const Game = ({
   navigation,
   questions,
   score,
+  room,
   requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions,
@@ -23,17 +24,11 @@ const Game = ({
     if (success) {
       updateScore(score + 5);
     }
-    requestQuestions();
     useRound(round + 1);
   }
 
   useEffect(() => {
     subscribeQuestions();
-    requestQuestions();
-
-    return () => {
-      unsubscribeQuestions();
-    };
   }, []);
 
   return <GameView questions={questions} goToNextRound={goToNextRound} />;
@@ -41,7 +36,8 @@ const Game = ({
 
 const mapStateToProps = state => ({
   questions: state.questions,
-  score: state.score
+  score: state.score,
+  room: state.room
 });
 
 export default connect(mapStateToProps, {
