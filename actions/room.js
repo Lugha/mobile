@@ -1,13 +1,7 @@
 export const CREATE_ROOM = "CREATE_ROOM";
 export const JOIN_ROOM = "JOIN_ROOM";
-export const UPDATE_ROOM = "UPDATE_ROOM";
-
-export const updateRoom = room => {
-  return {
-    type: UPDATE_ROOM,
-    room
-  };
-};
+export const LEAVE_ROOM = "LEAVE_ROOM";
+export const CANCEL_CREATE_ROOM = "CANCEL_CREATE_ROOM";
 
 export const subscribeCreateRoom = () => {
   return {
@@ -31,9 +25,25 @@ export const emitCreateRoom = () => {
   };
 };
 
+export const emitCancelCreateRoom = () => {
+  return {
+    event: CANCEL_CREATE_ROOM,
+    emit: true,
+    payload: {}
+  };
+};
+
 export const emitJoinRoom = room => {
   return {
     event: JOIN_ROOM,
+    emit: true,
+    payload: { room }
+  };
+};
+
+export const emitLeaveRoom = room => {
+  return {
+    event: LEAVE_ROOM,
     emit: true,
     payload: { room }
   };
