@@ -1,9 +1,9 @@
-import { END_ROUND } from "../actions/game";
+import { GET_NEXT_ROUND } from "../actions/game";
 
 export default function(state = {}, action) {
   switch (action.type) {
-    case END_ROUND:
-      return action.result;
+    case GET_NEXT_ROUND:
+      return state;
     default:
       return state;
   }

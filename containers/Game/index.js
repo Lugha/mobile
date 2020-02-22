@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
-  requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions
 } from "../../actions/questions";
 import { updateScore } from "../../actions/score";
-import { emitEndRound } from '../../actions/game';
-import { emitLeaveRoom } from '../../actions/room';
+import { emitGetNextRound } from '../../actions/game';
+import { emitLeaveRoom, updateRoom } from '../../actions/room';
 import GameView from "../../components/Game/GameView";
 
 const Game = ({
@@ -15,33 +14,36 @@ const Game = ({
   questions,
   score,
   room,
-  requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions,
   updateScore,
-  emitEndRound,
-  emitLeaveRoom
+  emitGetNextRound,
+  emitLeaveRoom,
+  updateRoom
 }) => {
   const [round, useRound] = useState(0);
 
   function goToNextRound(success) {
+    console.log("goToNextRound");
     if (success) {
       updateScore(score + 5);
     }
-    //emitEndRound(room);
+    emitGetNextRound(room);
     useRound(round + 1);
   }
 
   function quitGame() {
     unsubscribeQuestions();
     updateScore(0);
-    //emitLeaveRoom(room);
+    emitLeaveRoom(room);
+    updateRoom(null);
     navigation.navigate('Menu');
   }
 
   useEffect(() => {
     subscribeQuestions();
-    emitLeaveRoom('lol');
+    console.log({ room })
+    emitGetNextRound(room);
   }, []);
 
   return <GameView questions={questions} goToNextRound={goToNextRound} quitGame={quitGame} />;
@@ -54,10 +56,10 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  requestQuestions,
   subscribeQuestions,
   unsubscribeQuestions,
   updateScore,
-  emitEndRound,
-  emitLeaveRoom
+  emitGetNextRound,
+  emitLeaveRoom,
+  updateRoom
 })(Game);

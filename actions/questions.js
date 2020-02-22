@@ -15,9 +15,3 @@ export const unsubscribeQuestions = () => {
     leave: true
   };
 };
-
-export const requestQuestions = room => ({
-  event: GET_RANDOM_ROUND,
-  emit: true,
-  payload: { room }
-});

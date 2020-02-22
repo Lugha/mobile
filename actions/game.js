@@ -1,10 +1,9 @@
-export const END_ROUND = "END_ROUND";
+export const GET_NEXT_ROUND = "GET_NEXT_ROUND";
 
-export const emitEndRound = room => {
-    return {
-      event: END_ROUND,
-      emit: true,
-      payload: { room }
-    };
+export const emitGetNextRound = room => {
+  return {
+    event: GET_NEXT_ROUND,
+    emit: true,
+    payload: { room }
   };
-  
+};
