@@ -12,7 +12,7 @@ function socketManager() {
       return next(action);
     }
 
-    const { event, emit, listen, leave, handle, payload, ...rest } = action;
+    const { event, emit, leave, handle, payload, ...rest } = action;
 
     if (!event) {
       return next(action);
@@ -24,15 +24,14 @@ function socketManager() {
 
     if (emit) {
       socket.emit(event, payload);
+      return;
     }
 
-    if (listen) {
-      let handleEvent = handle;
-      if (typeof handleEvent === "string") {
-        handleEvent = result => dispatch({ type: handle, result, ...rest });
-      }
-      return socket.on(event, handleEvent);
+    let handleEvent = handle;
+    if (typeof handleEvent === "string") {
+      handleEvent = result => dispatch({ type: handle, result, ...rest });
     }
+    return socket.on(event, handleEvent);
   };
 }
 

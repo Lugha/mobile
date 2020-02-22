@@ -1,11 +1,17 @@
 import React, { useEffect } from "react";
 import { Text, StyleSheet } from "react-native";
-import { Container, Content, Spinner } from "native-base";
+import { Container, Content, Spinner, Button } from "native-base";
 import { connect } from "react-redux";
 
 import socketManager from "../../middlewares/socketManager";
 
-import { subscribeCreateRoom } from "../../actions/room";
+import {
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom,
+  emitCancelCreateRoom
+} from "../../actions/room";
 
 import Game from "../../containers/Game";
 
@@ -15,18 +21,48 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center"
+  },
+  buttonCancel: {
+    padding: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '50%'
   }
 });
 
-const CreateRoom = ({ navigation, room, subscribeCreateRoom }) => {
+const CreateRoom = ({
+  navigation,
+  room,
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom,
+  emitCancelCreateRoom
+}) => {
+  function cancel() {
+    emitCancelCreateRoom();
+    unsubscribeCreateRoom();
+    navigation.navigate("Menu");
+  }
+
   useEffect(() => {
-    subscribeCreateRoom();
-  }, []);
+    if (!room) {
+      subscribeCreateRoom();
+      emitCreateRoom();
+    } else {
+      emitJoinRoom(room);
+      unsubscribeCreateRoom();
+      navigation.navigate("Game");
+    }
+  }, [room]);
 
   return (
     <Container style={styles.container}>
       <Text>Waiting for player</Text>
       <Spinner color="blue" />
+      <Button style={styles.buttonCancel} block rounded onPress={cancel}>
+        <Text>Annuler</Text>
+      </Button>
     </Container>
   );
 };
@@ -36,5 +72,9 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  subscribeCreateRoom
+  subscribeCreateRoom,
+  unsubscribeCreateRoom,
+  emitCreateRoom,
+  emitJoinRoom,
+  emitCancelCreateRoom
 })(CreateRoom);

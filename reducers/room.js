@@ -1,9 +1,13 @@
-import { CREATE_ROOM } from "../actions/room";
+import { CREATE_ROOM, LEAVE_ROOM, CANCEL_CREATE_ROOM } from "../actions/room";
 
 export default function(state = null, action) {
   switch (action.type) {
     case CREATE_ROOM:
       return action.result;
+    case LEAVE_ROOM:
+      return null;
+    case CANCEL_CREATE_ROOM:
+      return state;
     default:
       return state;
   }

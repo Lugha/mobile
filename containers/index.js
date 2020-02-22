@@ -3,6 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Menu from "./Menu";
+import Game from "./Game";
 import CreateRoom from "../components/Game/CreateRoom";
 
 const AppNavigator = createStackNavigator();
@@ -16,8 +17,8 @@ const Navigation = () => {
         }}
       >
         <AppNavigator.Screen name="Menu" component={Menu} />
-        <AppNavigator.Screen name="Jouer" component={CreateRoom
-      } />
+        <AppNavigator.Screen name="Jouer" component={CreateRoom} />
+        <AppNavigator.Screen name="Game" component={Game} />
       </AppNavigator.Navigator>
     </NavigationContainer>
   );
