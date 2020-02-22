@@ -3,7 +3,7 @@ import socketIOClient from "socket.io-client";
 import questions from "../actions/questions";
 
 function socketManager() {
-  const socket = socketIOClient.connect(`http://192.168.0.34:5001`, {
+  const socket = socketIOClient.connect(`http://127.0.0.1:5001`, {
     forceBase64: 1
   });
 

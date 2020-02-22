@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function AnswersView({ translations, goToNextRound }) {
+function AnswersView({ translations, goToNextRound}) {
   return (
     <Container style={styles.view}>
       <Content>

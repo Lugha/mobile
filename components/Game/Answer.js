@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   container: { padding: 20, margin: 20 }
 });
 
-function Answer({ goToNextRound, translation }) {
+function Answer({ goToNextRound, translation}) {
   return (
     <Button
       style={styles.container}
