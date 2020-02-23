@@ -23,6 +23,7 @@ function socketManager() {
 
     if (leave) {
       socket.removeListener(event);
+      return;
     }
 
     if (emit) {

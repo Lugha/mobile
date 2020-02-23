@@ -12,7 +12,7 @@ export default function(state = initState, action) {
       console.log({ result: action.result })
       return { ...state, ...JSON.parse(action.result) };
     case UPDATE_GAME:
-      return {...state, end: !state.end };
+      return {...state, end: false };
     default:
       return state;
   };
