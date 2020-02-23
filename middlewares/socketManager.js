@@ -19,7 +19,6 @@ function socketManager() {
     }
 
     if (leave) {
-      alert(event + ' ecoute desactive');
       socket.removeListener(event);
       return;
     }
@@ -33,7 +32,6 @@ function socketManager() {
     if (typeof handleEvent === "string") {
       handleEvent = result => dispatch({ type: handle, result, ...rest });
     }
-    alert(event + ' ecoute active')
     return socket.on(event, handleEvent);
   };
 }

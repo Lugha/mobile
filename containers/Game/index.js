@@ -28,8 +28,6 @@ const Game = ({
   const [round, useRound] = useState(0);
 
   function goToNextRound(success) {
-    let couille = success ? 1 : 0;
-    alert("[goToNextRound] success" + couille);
     if (success) {
       updateScore(score + 5);
     }
@@ -54,7 +52,7 @@ const Game = ({
     emitGetNextRound(room, true);
   }, []);
           
-  return <GameView questions={questions} goToNextRound={goToNextRound} quitGame={quitGame} game={game}/>;
+  return <GameView questions={questions} goToNextRound={goToNextRound} quitGame={quitGame} game={game} room={room}/>;
 };
 
 const mapStateToProps = state => ({

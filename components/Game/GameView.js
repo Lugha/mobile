@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GameView = ({ questions, goToNextRound, quitGame, game }) => {
-  alert("[GAME END] "+ game.end)
+const GameView = ({ questions, goToNextRound, quitGame, game, room }) => {
   return (game.end
     ? <GameEndView quitGame={quitGame}/>
     : <Container style={styles.container}>
