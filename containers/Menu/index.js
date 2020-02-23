@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { StyleSheet, TextInput } from "react-native";
 import { Container, Button, Text, Content, Label } from "native-base";
 
-import { updateUser } from "../../actions/user";
-
 import Game from "../Game";
 
 const styles = StyleSheet.create({
@@ -32,7 +30,7 @@ const styles = StyleSheet.create({
 
 const categories = ["Jouer", "Réviser"];
 
-const Menu = ({ navigation, user, updateUser }) => {
+const Menu = ({ navigation, user }) => {
   const navigationController = (category, key) => {
     if (key === 1 && user && user.length > 3) {
       navigation.navigate(category);
@@ -41,14 +39,9 @@ const Menu = ({ navigation, user, updateUser }) => {
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.title}>Lugha</Text>
+      <Text style={styles.title}>{ user }</Text>
       <Container style={styles.menu}>
         <Content>
-          <Label style={{ marginLeft: 20 }}>user</Label>
-          <TextInput
-            style={styles.input}
-            onChangeText={text => updateUser(text)}
-          />
           {categories.map((category, key) => (
             <Button
               style={styles.button}
@@ -69,4 +62,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { updateUser })(Menu);
+export default connect(mapStateToProps)(Menu);

@@ -8,6 +8,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import * as Font from "expo-font";
 import socketManager from "./middlewares/socketManager";
+import thunk from 'redux-thunk';
 import AppNavigator from "./containers";
 import reducers from "./reducers";
 import logger from "redux-logger";
@@ -18,7 +19,8 @@ const initialState = {};
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancer(
   applyMiddleware(logger),
-  applyMiddleware(socketManager())
+  applyMiddleware(socketManager()),
+  applyMiddleware(thunk)
 );
 
 const store = createStore(reducers, initialState, enhancer);
