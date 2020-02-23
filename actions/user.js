@@ -1,8 +1,29 @@
-export const UPDATE_USER = "UPDATE_USER";
+import { OK } from "http-status";
+import axiosInstance from "../services/axios";
 
-export function updateUser(newUser) {
+export const GET_USER = "GET_USER";
+
+export const setUser = user => {
   return {
-    type: UPDATE_USER,
-    user: newUser
+    type: GET_USER,
+    user
+  };
+};
+
+export function connectUser(payload) {
+  return async dispatch => {
+    const { status, data } = await axiosInstance.connectUser(payload);
+
+    let user = Object.assign({}, data);
+
+    if (status === OK) {
+      const { status: statusMe, data: me } = await axiosInstance.getUser(
+        user.token
+      );
+
+      user = Object.assign(user, me);
+    }
+
+    dispatch(setUser(user));
   };
 }

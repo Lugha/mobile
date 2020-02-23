@@ -1,13 +1,16 @@
 import socketIOClient from "socket.io-client";
 
+import config from "../config";
+
 import questions from "../actions/questions";
 
 function socketManager() {
-  const socket = socketIOClient.connect(`http://127.0.0.1:5001`, {
+  const socket = socketIOClient.connect(`${config.baseUrl}:5001`, {
     forceBase64: 1
   });
 
   return ({ dispatch }) => next => action => {
+    console.log({ action, type: typeof action });
     if (typeof action === "function") {
       return next(action);
     }
