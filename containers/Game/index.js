@@ -6,7 +6,7 @@ import {
 } from "../../actions/questions";
 import { updateScore } from "../../actions/score";
 import { emitGetNextRound, subscribeEndGame } from '../../actions/game';
-import { emitLeaveRoom, updateRoom } from '../../actions/room';
+import { emitLeaveRoom, updateRoom, unsubscribeCreateRoom } from '../../actions/room';
 import GameView from "../../components/Game/GameView";
 
 const Game = ({
@@ -17,6 +17,7 @@ const Game = ({
   game,
   subscribeQuestions,
   unsubscribeQuestions,
+  unsubscribeCreateRoom,
   updateScore,
   emitGetNextRound,
   emitLeaveRoom,
@@ -40,6 +41,7 @@ const Game = ({
     updateScore(0);
     emitLeaveRoom(room);
     updateRoom(null);
+    unsubscribeCreateRoom();
     navigation.navigate("Menu");
   }
 
@@ -67,5 +69,6 @@ export default connect(mapStateToProps, {
   emitGetNextRound,
   emitLeaveRoom,
   updateRoom,
-  subscribeEndGame
+  subscribeEndGame,
+  unsubscribeCreateRoom
 })(Game);

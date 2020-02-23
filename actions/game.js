@@ -22,3 +22,10 @@ export const subscribeEndGame = () => {
 export const updateGame = () => {
   return {type: UPDATE_GAME};
 };
+
+export const unsubscribeEndGame = () => {
+  return {
+    event: GET_END_GAME,
+    leave: true
+  };
+};
