@@ -1,9 +1,9 @@
-import { GET_USER } from "../actions/user";
+import { UPDATE_USER } from "../actions/user";
 
-export default function(state = {}, action) {
+export default function(state = null, action) {
   switch (action.type) {
-    case GET_USER:
-      return { ...state, ...action.user };
+    case UPDATE_USER:
+      return action.user ? { ...state, ...action.user } : {};
     default:
       return state;
   }
