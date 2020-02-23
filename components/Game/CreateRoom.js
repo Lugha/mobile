@@ -47,10 +47,13 @@ const CreateRoom = ({
 
   useEffect(() => {
     if (!room) {
+      alert('ask for creating room')
       subscribeCreateRoom();
       emitCreateRoom();
     } else {
+      alert('we got the room, you can join it')
       emitJoinRoom(room);
+      alert('nous avons rejoint la room')
       unsubscribeCreateRoom();
       navigation.navigate("Game");
     }
