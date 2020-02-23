@@ -13,7 +13,7 @@ import SignIn from "../../components/Connection/SignIn";
 import SignUp from "../../components/Connection/SignUp";
 import { TextInput } from "react-native-gesture-handler";
 
-import { connectUser } from "../../actions/user";
+import { connectUser, updateUser } from "../../actions/user";
 
 const styles = StyleSheet.create({
   title: {
@@ -38,14 +38,15 @@ const styles = StyleSheet.create({
   }
 });
 
-const Connection = ({ navigation, connectUser }) => {
+const Connection = ({ navigation, user, connectUser }) => {
   const [sign, setSign] = useState(false);
-  const [username, setUsername] = useState(null);
+  const [username, updateUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [created, setCreated] = useState(false);
 
-  async function connect() {
+  function connect() {
     connectUser({ username, password });
+    setPassword(null);
   }
 
   async function register() {
@@ -57,26 +58,28 @@ const Connection = ({ navigation, connectUser }) => {
   }
 
   useEffect(() => {
-    console.log({ username, password });
-  }, [username, password]);
+    if (user && user.token) {
+      navigation.navigate("Menu");
+    }
+  }, [user]);
 
   return (
     <Container style={styles.container}>
       <Text style={styles.title}>Lugha</Text>
-      <TextInput onChange={text => setUsername(text)} />
+      <TextInput onChange={text => updateUsername(text)} />
       <Container style={styles.menu}>
         <Content>
           {sign ? (
             <SignUp
               registration={register}
-              setUsername={setUsername}
+              updateUsername={updateUsername}
               setPassword={setPassword}
               setSign={setSign}
             />
           ) : (
             <SignIn
               connection={connect}
-              setUsername={setUsername}
+              updateUsername={updateUsername}
               setPassword={setPassword}
               setSign={setSign}
             />

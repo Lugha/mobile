@@ -12,18 +12,29 @@ const styles = StyleSheet.create({
   }
 });
 
-function SignUp({ registration, setUsername, setPassword, setSign }) {
+function SignUp({ registration, updateUsername, setPassword, setSign }) {
   return (
     <>
       <Label style={{ marginLeft: 20 }}>username</Label>
-      <TextInput style={styles.input} onChangeText={text => setUsername(text)} />
+      <TextInput
+        style={styles.input}
+        onChangeText={text => updateUsername(text)}
+      />
       <Label style={{ marginLeft: 20 }}>password</Label>
-      <TextInput style={styles.input} onChangeText={text => setPassword(text)} />
-      <Button style={styles.button} block rounded onPress={() => registration()}>
+      <TextInput
+        style={styles.input}
+        onChangeText={text => setPassword(text)}
+      />
+      <Button style={styles.button} block rounded onPress={registration}>
         <Text>Inscription</Text>
       </Button>
       <Label style={{ marginLeft: 20 }}>Déjà membre ?</Label>
-      <Button style={styles.button} block rounded onPress={() => setSign(false)}>
+      <Button
+        style={styles.button}
+        block
+        rounded
+        onPress={() => setSign(false)}
+      >
         <Text>Connexion</Text>
       </Button>
     </>

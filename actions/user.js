@@ -1,11 +1,11 @@
 import { OK } from "http-status";
 import axiosInstance from "../services/axios";
 
-export const GET_USER = "GET_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
-export const setUser = user => {
+export const updateUser = user => {
   return {
-    type: GET_USER,
+    type: UPDATE_USER,
     user
   };
 };
@@ -17,13 +17,11 @@ export function connectUser(payload) {
     let user = Object.assign({}, data);
 
     if (status === OK) {
-      const { status: statusMe, data: me } = await axiosInstance.getUser(
-        user.token
-      );
+      const { data: me } = await axiosInstance.getUser(user.token);
 
       user = Object.assign(user, me);
-    }
 
-    dispatch(setUser(user));
+      dispatch(updateUser(user));
+    }
   };
 }

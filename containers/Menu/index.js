@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { StyleSheet, TextInput } from "react-native";
 import { Container, Button, Text, Content, Label } from "native-base";
 
+import { updateUser } from "../../actions/user";
+
 import Game from "../Game";
 
 const styles = StyleSheet.create({
@@ -28,30 +30,30 @@ const styles = StyleSheet.create({
   }
 });
 
-const categories = ["Jouer", "Réviser"];
+const categories = ["Jouer", "Réviser", ""];
 
-const Menu = ({ navigation, user }) => {
-  const navigationController = (category, key) => {
-    if (key === 1 && user && user.length > 3) {
-      navigation.navigate(category);
-    }
-  };
+const Menu = ({ navigation, user, updateUser }) => {
+  function disconnect() {
+    updateUser(null);
+    navigation.navigate("Connection");
+  }
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.title}>{ user }</Text>
+      <Text style={styles.title}>{user.username}</Text>
       <Container style={styles.menu}>
         <Content>
-          {categories.map((category, key) => (
-            <Button
-              style={styles.button}
-              block
-              rounded
-              onPress={() => navigationController(category, key + 1)}
-            >
-              <Text>{category}</Text>
-            </Button>
-          ))}
+          <Button
+            style={styles.button}
+            block
+            rounded
+            onPress={() => navigation.navigate("Jouer")}
+          >
+            <Text>Jouer</Text>
+          </Button>
+          <Button style={styles.button} block rounded onPress={disconnect}>
+            <Text>Déconnexion</Text>
+          </Button>
         </Content>
       </Container>
     </Container>
@@ -62,4 +64,6 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Menu);
+export default connect(mapStateToProps, {
+  updateUser
+})(Menu);
