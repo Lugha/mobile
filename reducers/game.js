@@ -1,18 +1,18 @@
-import { GET_NEXT_ROUND, STORE_END_GAME, UPDATE_GAME } from "../actions/game";
+//GET_NEXT_ROUND, STORE_END_GAME,
 
-const initState = {
-  end: false,
-}
+import { STORE_GAME, CLEAN_GAME } from "../actions/game";
 
-export default function(state = initState, action) {
+export default function(state = {}, action) {
   switch (action.type) {
-    case GET_NEXT_ROUND:
-      return state;
-    case STORE_END_GAME:
-      console.log({ result: action.result })
-      return { ...state, ...JSON.parse(action.result) };
-    case UPDATE_GAME:
-      return {...state, end: false };
+    // case GET_NEXT_ROUND:
+    //   return state;
+    // case STORE_END_GAME:
+    //   console.log({ result: action.result })
+    //   return { ...state, ...JSON.parse(action.result) };
+    case STORE_GAME:
+      return {...state, ...JSON.parse(action.result) };
+    case CLEAN_GAME:
+      return {}
     default:
       return state;
   };

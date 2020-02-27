@@ -1,19 +1,28 @@
 import React, { useEffect } from "react";
 import { Text, StyleSheet } from "react-native";
-import { Container, Content, Spinner, Button } from "native-base";
+import { Container, Spinner, Button } from "native-base";
 import { connect } from "react-redux";
 
-import socketManager from "../../middlewares/socketManager";
+// import socketManager from "../../middlewares/socketManager";
+
+// import {
+  // subscribeCreateRoom,
+  // unsubscribeCreateRoom,
+  // emitCreateRoom,
+  // emitJoinRoom,
+  // emitCancelCreateRoom
+// } from "../../actions/room";
 
 import {
-  subscribeCreateRoom,
-  unsubscribeCreateRoom,
-  emitCreateRoom,
+  subscribeGame,
+  unsubscribeGame,
   emitJoinRoom,
-  emitCancelCreateRoom
-} from "../../actions/room";
+  emitJoinWaitingList,
+  cleanGame,
+  emitLeaveWaitingList,
+} from "../../actions/game"
 
-import Game from "../../containers/Game";
+// import Game from "../../containers/Game";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,29 +41,40 @@ const styles = StyleSheet.create({
 
 const CreateRoom = ({
   navigation,
-  room,
-  subscribeCreateRoom,
-  unsubscribeCreateRoom,
-  emitCreateRoom,
+  game,
+  // room,
+  // subscribeCreateRoom,
+  // unsubscribeCreateRoom,
+  // emitCreateRoom,
   emitJoinRoom,
-  emitCancelCreateRoom
+  emitJoinWaitingList,
+  cleanGame,
+  subscribeGame,
+  unsubscribeGame,
+
+  // emitCancelCreateRoom
 }) => {
   function cancel() {
-    emitCancelCreateRoom();
-    unsubscribeCreateRoom();
+    cleanGame();
+    unsubscribeGame();
+    // emitCancelCreateRoom();
+    // unsubscribeCreateRoom();
     navigation.navigate("Menu");
   }
 
   useEffect(() => {
-    if (!room) {
-      subscribeCreateRoom();
-      emitCreateRoom();
+    if (!game.room) {
+      subscribeGame();
+      emitJoinWaitingList();
+      // subscribeCreateRoom();
+      // emitCreateRoom();
     } else {
-      emitJoinRoom(room);
-      unsubscribeCreateRoom();
+      emitLeaveWaitingList();
+      emitJoinRoom(game.room);
+      // unsubscribeCreateRoom();
       navigation.navigate("Game");
     }
-  }, [room]);
+  }, [game.room]);
 
   return (
     <Container style={styles.container}>
@@ -68,13 +88,17 @@ const CreateRoom = ({
 };
 
 const mapStateToProps = state => ({
-  room: state.room
+  game: state.game
 });
 
 export default connect(mapStateToProps, {
-  subscribeCreateRoom,
-  unsubscribeCreateRoom,
-  emitCreateRoom,
+  // subscribeCreateRoom,
+  // unsubscribeCreateRoom,
+  // emitCreateRoom,
   emitJoinRoom,
-  emitCancelCreateRoom
+  emitJoinWaitingList,
+  cleanGame,
+  subscribeGame,
+  unsubscribeGame,
+  // emitCancelCreateRoom
 })(CreateRoom);

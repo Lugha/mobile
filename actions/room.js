@@ -1,17 +1,17 @@
-export const CREATE_ROOM = "CREATE_ROOM";
+export const INVITATION_TO_JOIN_ROOM = "INVITATION_TO_JOIN_ROOM";
 export const JOIN_ROOM = "JOIN_ROOM";
 export const LEAVE_ROOM = "LEAVE_ROOM";
 export const CANCEL_CREATE_ROOM = "CANCEL_CREATE_ROOM";
 export const UPDATE_ROOM = "UPDATE_ROOM";
 
-export const subscribeCreateRoom = () => {
+export const subscribeRoomInvitation = () => {
   return {
-    handle: CREATE_ROOM,
-    event: CREATE_ROOM
+    handle: INVITATION_TO_JOIN_ROOM,
+    event: 
   };
 };
 
-export const unsubscribeCreateRoom = () => {
+export const unsubscribeRoomInvitation = () => {
   return {
     event: CREATE_ROOM,
     leave: true
@@ -50,9 +50,9 @@ export const emitLeaveRoom = room => {
   };
 };
 
-export const updateRoom = room => {
-  return {
-    type: UPDATE_ROOM,
-    room
-  };
-};
+// export const updateRoom = room => {
+//   return {
+//     type: UPDATE_ROOM,
+//     room
+//   };
+// };

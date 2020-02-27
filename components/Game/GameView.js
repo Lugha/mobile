@@ -21,26 +21,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const GameView = ({ questions, goToNextRound, quitGame, game, room }) => {
-  return (game.end
-    ? <GameEndView quitGame={quitGame}/>
-    : <Container style={styles.container}>
+const GameView = ({ goToNextRound, quitGame, game }) => {
+  return (game.active
+    ? <Container style={styles.container}>
         <Score />
         <Button
           style={styles.buttonQuit}
           block
           rounded
-          onPress={quitGame}
-        >
+          onPress={quitGame}>
           <Text>Quitter</Text>
         </Button>
-        <Sentence sentence={questions.sentence} />
+        <Sentence sentence={game.stageData.sentence} />
         <AnswersView
           goToNextRound={goToNextRound}
-          translations={questions.traductions}
-          quitGame={quitGame}
-        />
+          translations={game.stageData.traductions}
+          quitGame={quitGame}/>
       </Container>
+    : <GameEndView quitGame={quitGame}/>
   );
 };
 

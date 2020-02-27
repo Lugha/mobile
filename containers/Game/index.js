@@ -1,76 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  subscribeQuestions,
-  unsubscribeQuestions
-} from "../../actions/questions";
-import { updateScore } from "../../actions/score";
-import { emitGetNextRound, subscribeEndGame, updateGame, unsubscribeEndGame } from '../../actions/game';
-import { emitLeaveRoom, updateRoom, unsubscribeCreateRoom } from '../../actions/room';
+// import {
+//   subscribeQuestions,
+//   unsubscribeQuestions
+// } from "../../actions/questions";
+// import { updateScore } from "../../actions/score";
+import { emitUpdateStage, subscribeGame, unsubscribeGame, cleanGame, emitLeaveRoom } from '../../actions/game';
+// import { emitLeaveRoom, updateRoom, unsubscribeCreateRoom } from '../../actions/room';
 import GameView from "../../components/Game/GameView";
 
 const Game = ({
   navigation,
-  questions,
-  score,
-  room,
+  // questions,
+  // score,
+  // room,
   game,
-  subscribeQuestions,
-  unsubscribeQuestions,
-  updateScore,
-  emitGetNextRound,
+  cleanGame,
+  unsubscribeGame,
+  emitUpdateStage,
   emitLeaveRoom,
-  updateRoom,
-  updateGame,
-  subscribeEndGame,
-  unsubscribeEndGame,
+  // updateRoom,
+  // updateGame,
+  // subscribeEndGame,
+  // unsubscribeEndGame,
 }) => {
-  const [round, useRound] = useState(0);
+  // const [round, useRound] = useState(0);
 
-  function goToNextRound(success) {
+  function goToNextRound(success) {//submitStageAnswer
     if (success) {
       updateScore(score + 5);
     }
-    emitGetNextRound(room, success);
-    useRound(round + 1);
+    emitUpdateStage(room, success);
+    // useRound(round + 1);
   }
 
   function quitGame() {
-    unsubscribeQuestions();
-    unsubscribeEndGame();
-    updateScore(0);
+    // unsubscribeQuestions();
+    unsubscribeGame();
     emitLeaveRoom(room);
-    updateRoom(null);
-    updateGame(),
+    cleanGame(),
+    // updateScore(0);
     navigation.navigate("Menu");
   }
 
   useEffect(() => {
-    subscribeEndGame();
-    subscribeQuestions();
-    console.log({ room })
-    emitGetNextRound(room, true);
+    // subscribeQuestions();
+    console.log(game.room)
+    emitUpdateStage(game.room, true);
   }, []);
           
-  return <GameView questions={questions} goToNextRound={goToNextRound} quitGame={quitGame} game={game} room={room}/>;
+  return <GameView goToNextRound={goToNextRound} quitGame={quitGame} game={game}/>;
 };
 
 const mapStateToProps = state => ({
-  questions: state.questions,
-  score: state.score,
-  room: state.room,
+  // questions: state.questions,
+  // score: state.score,
+  // room: state.room,
   game: state.game,
 });
 
 export default connect(mapStateToProps, {
-  subscribeQuestions,
-  unsubscribeQuestions,
-  updateScore,
-  emitGetNextRound,
+  // subscribeQuestions,
+  // unsubscribeQuestions,
+  // updateScore,
+  emitUpdateStage,
   emitLeaveRoom,
-  updateRoom,
-  updateGame,
-  subscribeEndGame,
-  unsubscribeEndGame,
-  unsubscribeCreateRoom,
+  // updateRoom,
+  // updateGame,
+  cleanGame,
+  subscribeGame,
+  unsubscribeGame,
+  // unsubscribeCreateRoom,
 })(Game);

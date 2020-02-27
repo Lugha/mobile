@@ -1,31 +1,88 @@
-import { GET_END_GAME } from "../events";
+import { UPDATE_GAME } from "../events";
 
-export const GET_NEXT_ROUND = "GET_NEXT_ROUND";
-export const STORE_END_GAME = "STORE_END_GAME";
-export const UPDATE_GAME = "UPDATE_GAME";
+export const GET_NEXT_STAGE = "GET_NEXT_ROUND";
+export const CLEAN_GAME = "CLEAN_GAME"
+export const STORE_GAME = "STORE_GAME"; 
+export const JOIN_TRADUCTIONS_WAITINGLIST = "JOIN_TRADUCTIONS_WAITINGLIST";
+export const LEAVE_TRADUCTIONS_WAITINGLIST = "LEAVE_TRADUCTIONS_WAITINGLIST";
+export const JOIN_ROOM = "JOIN_ROOM";
 
-export const emitGetNextRound = (room, success) => {
+//SUBSCRIBE ACTIONS
+export const subscribeGame = () => {
   return {
-    event: GET_NEXT_ROUND,
+    handle: STORE_GAME,
+    event: UPDATE_GAME, 
+  }
+}
+
+export const unsubscribeGame = () => {
+  return {
+    event: UPDATE_GAME,
+    leave: true,
+  }
+}
+
+//EMIT ACTIONS
+export const emitUpdateStage = (room, currentGameSuccess) => {
+  return {
+    event: GET_UPDATE_STAGE,
     emit: true,
-    payload: { room, success }
+    payload: { room, currentGameSuccess }
   };
 };
 
-export const subscribeEndGame = () => {
+
+//CLEAN STORE ACTION
+export const cleanGame = () => {
   return {
-    handle: STORE_END_GAME,
-    event: GET_END_GAME,
+    type: CLEAN_GAME,
   };
 };
 
-export const updateGame = () => {
-  return {type: UPDATE_GAME};
-};
-
-export const unsubscribeEndGame = () => {
+export const emitJoinWaitingList = () => {
   return {
-    event: GET_END_GAME,
-    leave: true
+    event: JOIN_TRADUCTIONS_WAITINGLIST,
+    emit: true,
   };
 };
+
+export const emitLeaveWaitingList = () => {
+  return {
+    event: LEAVE_TRADUCTIONS_WAITINGLIST,
+    emit: true,
+  };
+}
+
+export const emitJoinRoom = room => {
+  return {
+    event: JOIN_ROOM,
+    emit: true,
+    payload: { room }
+  };
+};
+
+export const emitLeaveRoom = room => {
+  return {
+    event: LEAVE_ROOM,
+    emit: true,
+    payload: { room }
+  };
+};
+
+// export const subscribeEndGame = () => {
+//   return {
+//     handle: STORE_END_GAME,
+//     event: GET_END_GAME,
+//   };
+// };
+
+// export const updateGame = () => {
+//   return {type: UPDATE_GAME};
+// };
+
+// export const unsubscribeEndGame = () => {
+//   return {
+//     event: GET_END_GAME,
+//     leave: true
+//   };
+// };

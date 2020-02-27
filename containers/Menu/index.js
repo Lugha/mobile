@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { StyleSheet, TextInput } from "react-native";
-import { Container, Button, Text, Content, Label } from "native-base";
+import { StyleSheet,} from "react-native";
+import { Container, Button, Text, Content } from "native-base";
 
 import { updateUser } from "../../actions/user";
 
-import Game from "../Game";
+// import Game from "../Game";
 
 const styles = StyleSheet.create({
   title: {
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
   }
 });
 
-const categories = ["Jouer", "Réviser", ""];
+// const categories = ["Jouer", "Réviser", ""];
 
 const Menu = ({ navigation, user, updateUser }) => {
   function disconnect() {
     updateUser(null);
     navigation.navigate("Connection");
   }
-
+  
   return (
     <Container style={styles.container}>
       <Text style={styles.title}>{user.username}</Text>
