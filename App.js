@@ -7,10 +7,10 @@ import { Text, Spinner } from "native-base";
 import { createStore, applyMiddleware, compose } from "redux";
 
 import * as Font from "expo-font";
-import socketManager from "./middlewares/socketManager";
+import socketManager from "./src/middlewares/socketManager";
 import thunk from 'redux-thunk';
-import AppNavigator from "./containers";
-import reducers from "./reducers";
+import AppNavigator from "./src/containers";
+import reducers from "./src/reducers";
 import logger from "redux-logger";
 
 console.disableYellowBox = true;
