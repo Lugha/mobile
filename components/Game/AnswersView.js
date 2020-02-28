@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function AnswersView({ translations, goToNextRound}) {
+function AnswersView({ translations, submitStageAnswer}) {
   return (
     <Container style={styles.view}>
       <Content>
@@ -23,7 +23,7 @@ function AnswersView({ translations, goToNextRound}) {
               <Answer
                 key={index}
                 translation={translation}
-                goToNextRound={goToNextRound}
+                submitStageAnswer={submitStageAnswer}
               />
             )
           )

@@ -55,6 +55,7 @@ const CreateRoom = ({
   // emitCancelCreateRoom
 }) => {
   function cancel() {
+    emitLeaveWaitingList();
     cleanGame();
     unsubscribeGame();
     // emitCancelCreateRoom();
@@ -69,7 +70,6 @@ const CreateRoom = ({
       // subscribeCreateRoom();
       // emitCreateRoom();
     } else {
-      emitLeaveWaitingList();
       emitJoinRoom(game.room);
       // unsubscribeCreateRoom();
       navigation.navigate("Game");

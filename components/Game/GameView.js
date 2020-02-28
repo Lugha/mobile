@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GameView = ({ goToNextRound, quitGame, game }) => {
+const GameView = ({ submitStageAnswer, quitGame, game }) => {
   return (game.active
     ? <Container style={styles.container}>
         <Score />
@@ -34,7 +34,7 @@ const GameView = ({ goToNextRound, quitGame, game }) => {
         </Button>
         <Sentence sentence={game.stageData.sentence} />
         <AnswersView
-          goToNextRound={goToNextRound}
+          submitStageAnswer={submitStageAnswer}
           translations={game.stageData.traductions}
           quitGame={quitGame}/>
       </Container>

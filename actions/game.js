@@ -1,14 +1,14 @@
 import { UPDATE_GAME } from "../events";
 
-export const GET_NEXT_STAGE = "GET_NEXT_ROUND";
 export const CLEAN_GAME = "CLEAN_GAME"
 export const STORE_GAME = "STORE_GAME"; 
-export const JOIN_TRADUCTIONS_WAITINGLIST = "JOIN_TRADUCTIONS_WAITINGLIST";
-export const LEAVE_TRADUCTIONS_WAITINGLIST = "LEAVE_TRADUCTIONS_WAITINGLIST";
+export const JOIN_WAITINGLIST = "JOIN_WAITINGLIST";
+export const LEAVE_WAITINGLIST = "LEAVE_WAITINGLIST";
 export const JOIN_ROOM = "JOIN_ROOM";
 
 //SUBSCRIBE ACTIONS
 export const subscribeGame = () => {
+  alert('subscribing')
   return {
     handle: STORE_GAME,
     event: UPDATE_GAME, 
@@ -25,34 +25,36 @@ export const unsubscribeGame = () => {
 //EMIT ACTIONS
 export const emitUpdateStage = (room, currentGameSuccess) => {
   return {
-    event: GET_UPDATE_STAGE,
+    event: UPDATE_GAME,
     emit: true,
     payload: { room, currentGameSuccess }
   };
 };
 
 
-//CLEAN STORE ACTION
+//CLEAN STORE ACTIONS
 export const cleanGame = () => {
   return {
     type: CLEAN_GAME,
   };
 };
 
+//WAITING LIST ACTIONS
 export const emitJoinWaitingList = () => {
   return {
-    event: JOIN_TRADUCTIONS_WAITINGLIST,
+    event: JOIN_WAITINGLIST,
     emit: true,
   };
 };
 
 export const emitLeaveWaitingList = () => {
   return {
-    event: LEAVE_TRADUCTIONS_WAITINGLIST,
+    event: LEAVE_WAITINGLIST,
     emit: true,
   };
 }
 
+//ROOM ACTIONS
 export const emitJoinRoom = room => {
   return {
     event: JOIN_ROOM,

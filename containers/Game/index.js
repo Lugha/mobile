@@ -26,18 +26,15 @@ const Game = ({
 }) => {
   // const [round, useRound] = useState(0);
 
-  function goToNextRound(success) {//submitStageAnswer
-    if (success) {
-      updateScore(score + 5);
-    }
-    emitUpdateStage(room, success);
+  function submitStageAnswer(key) {
+    emitUpdateStage(game.room, key);
     // useRound(round + 1);
   }
 
   function quitGame() {
     // unsubscribeQuestions();
     unsubscribeGame();
-    emitLeaveRoom(room);
+    emitLeaveRoom(game.room);
     cleanGame(),
     // updateScore(0);
     navigation.navigate("Menu");
@@ -49,7 +46,7 @@ const Game = ({
     emitUpdateStage(game.room, true);
   }, []);
           
-  return <GameView goToNextRound={goToNextRound} quitGame={quitGame} game={game}/>;
+  return <GameView submitStageAnswer={submitStageAnswer} quitGame={quitGame} game={game}/>;
 };
 
 const mapStateToProps = state => ({

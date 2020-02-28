@@ -7,13 +7,13 @@ const styles = StyleSheet.create({
   container: { padding: 20, margin: 20 }
 });
 
-function Answer({ goToNextRound, translation}) {
+function Answer({ submitStageAnswer, translation, key}) {
   return (
     <Button
       style={styles.container}
       block
       rounded
-      onPress={() => goToNextRound(translation.success)}
+      onPress={() => submitStageAnswer(key)}
     >
       <Text>{translation.text}</Text>
     </Button>
