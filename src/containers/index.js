@@ -6,6 +6,7 @@ import Connection from "./Connection";
 import Menu from "./Menu";
 import GameBuilder from "./Game";
 import GameLobby from "./GameLobby";
+import GameWaitOpponent from "../components/Game/Views/GameWaitOpponent";
 
 const AppNavigator = createStackNavigator();
 

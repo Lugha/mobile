@@ -3,6 +3,7 @@ import { StyleSheet, Text } from "react-native";
 import Sentence from "../../Sentence";
 import Answers from "../../Answers";
 import { Container, Button } from "native-base";
+import GameWaitOpponent from "../GameWaitOpponent";
 // import Score from "../../../containers/Score";
 
 const styles = StyleSheet.create({
@@ -20,20 +21,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameStage = ({ submitStageAnswer, quitGame, game }) => {
-  return (
-    <Container style={styles.container}>
-      {/* <Score /> */}
-      <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
-        <Text>Quitter</Text>
-      </Button>
-      <Sentence sentence={game.stageData.sentence} />
-      <Answers
-        submitStageAnswer={submitStageAnswer}
-        translations={game.stageData.traductions}
-        quitGame={quitGame}
-      />
-    </Container>
+const GameStage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
+  return (!submitedAnswer
+    ? <Container style={styles.container}>
+        {/* <Score /> */}
+        <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
+          <Text>Quitter</Text>
+        </Button>
+        <Sentence sentence={game.stageData.sentence} />
+        <Answers
+          submitStageAnswer={submitStageAnswer}
+          translations={game.stageData.traductions}
+          quitGame={quitGame}
+        />
+      </Container>
+    : <GameWaitOpponent />
   );
 };
 

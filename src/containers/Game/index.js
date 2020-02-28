@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -19,9 +19,11 @@ const GameBuilder = ({
   emitUpdateStage,
   emitLeaveRoom
 }) => {
+  const [submitedAnswer, setSubmitedAnswer] = useState(false);
 
   function submitStageAnswer(key) {
     emitUpdateStage(game.room, key);
+    setSubmitedAnswer(true);
   }
 
   function quitGame() {
@@ -32,11 +34,12 @@ const GameBuilder = ({
   }
 
   useEffect(() => {
-    console.log(game.room);
-  }, []);
+    if (submitedAnswer) setSubmitedAnswer(false) 
+  }, [game.stageData]);
 
   return (
     <Game
+      submitedAnswer={submitedAnswer}
       submitStageAnswer={submitStageAnswer}
       quitGame={quitGame}
       game={game}
