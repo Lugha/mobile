@@ -2,7 +2,7 @@ import { CREATED } from "http-status";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import config from "../../config";
+import config from "../../../config";
 
 import axiosInstance from "../../services/axios";
 

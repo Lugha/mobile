@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function GameEndView({ quitGame }) {
+function GameEnd({ quitGame }) {
   return (
     <Container style={styles.container}>
       <Text>Fin du jeu</Text>
@@ -29,4 +29,4 @@ function GameEndView({ quitGame }) {
   );
 }
 
-export default GameEndView;
+export default GameEnd;

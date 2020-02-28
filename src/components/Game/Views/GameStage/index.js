@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import Sentence from "../Sentence";
-import Answers from "../Answers";
+import Sentence from "../../Sentence";
+import Answers from "../../Answers";
 import { Container, Button } from "native-base";
 // import Score from "../../../containers/Score";
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameStageView = ({ submitStageAnswer, quitGame, game }) => {
+const GameStage = ({ submitStageAnswer, quitGame, game }) => {
   return (
     <Container style={styles.container}>
       {/* <Score /> */}
@@ -37,4 +37,4 @@ const GameStageView = ({ submitStageAnswer, quitGame, game }) => {
   );
 };
 
-export default GameStageView;
+export default GameStage;

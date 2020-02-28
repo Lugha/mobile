@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameSetup = ({
+const GameLobby = ({
   navigation,
   game,
   emitJoinRoom,
@@ -55,7 +55,7 @@ const GameSetup = ({
 
   return (
     <Container style={styles.container}>
-      <Text>Waiting for player</Text>
+      <Text>Waiting for battle</Text>
       <Spinner color="blue" />
       <Button style={styles.buttonCancel} block rounded onPress={cancel}>
         <Text>Annuler</Text>
@@ -74,4 +74,4 @@ export default connect(mapStateToProps, {
   cleanGame,
   subscribeGame,
   unsubscribeGame
-})(GameSetup);
+})(GameLobby);

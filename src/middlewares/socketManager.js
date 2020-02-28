@@ -1,8 +1,6 @@
 import socketIOClient from "socket.io-client";
 
-import config from "../config";
-
-import questions from "../actions/questions";
+import config from "../../config";
 
 function socketManager() {
   const socket = socketIOClient.connect(`${config.baseUrl}:5001`, {

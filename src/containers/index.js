@@ -5,7 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Connection from "./Connection";
 import Menu from "./Menu";
 import GameBuilder from "./Game";
-import GameSetup from "../components/Game/GameSetup";
+import GameLobby from "./GameLobby";
 
 const AppNavigator = createStackNavigator();
 
@@ -19,7 +19,7 @@ const Navigation = () => {
       >
         <AppNavigator.Screen name="Connection" component={Connection} />
         <AppNavigator.Screen name="Menu" component={Menu} />
-        <AppNavigator.Screen name="Jouer" component={GameSetup} />
+        <AppNavigator.Screen name="Jouer" component={GameLobby} />
         <AppNavigator.Screen name="Game" component={GameBuilder} />
       </AppNavigator.Navigator>
     </NavigationContainer>
