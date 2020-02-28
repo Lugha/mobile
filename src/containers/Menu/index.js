@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { StyleSheet,} from "react-native";
+import { StyleSheet } from "react-native";
 import { Container, Button, Text, Content } from "native-base";
 
 import { updateUser } from "../../actions/user";
@@ -37,7 +37,7 @@ const Menu = ({ navigation, user, updateUser }) => {
     updateUser(null);
     navigation.navigate("Connection");
   }
-  
+
   return (
     <Container style={styles.container}>
       <Text style={styles.title}>{user.username}</Text>

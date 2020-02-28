@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 //   unsubscribeQuestions
 // } from "../../actions/questions";
 // import { updateScore } from "../../actions/score";
-import { emitUpdateStage, subscribeGame, unsubscribeGame, cleanGame, emitLeaveRoom } from '../../actions/game';
+import {
+  emitUpdateStage,
+  subscribeGame,
+  unsubscribeGame,
+  cleanGame,
+  emitLeaveRoom
+} from "../../actions/game";
 // import { emitLeaveRoom, updateRoom, unsubscribeCreateRoom } from '../../actions/room';
 import GameView from "../../components/Game/GameView";
 
@@ -18,7 +24,7 @@ const Game = ({
   cleanGame,
   unsubscribeGame,
   emitUpdateStage,
-  emitLeaveRoom,
+  emitLeaveRoom
   // updateRoom,
   // updateGame,
   // subscribeEndGame,
@@ -27,7 +33,7 @@ const Game = ({
   // const [round, useRound] = useState(0);
 
   function submitStageAnswer(key) {
-    console.log({ key })
+    console.log({ key });
     emitUpdateStage(game.room, key);
     // useRound(round + 1);
   }
@@ -37,23 +43,29 @@ const Game = ({
     unsubscribeGame();
     emitLeaveRoom(game.room);
     cleanGame(),
-    // updateScore(0);
-    navigation.navigate("Menu");
+      // updateScore(0);
+      navigation.navigate("Menu");
   }
 
   useEffect(() => {
     // subscribeQuestions();
-    console.log(game.room)
+    console.log(game.room);
   }, []);
-          
-  return <GameView submitStageAnswer={submitStageAnswer} quitGame={quitGame} game={game}/>;
+
+  return (
+    <GameView
+      submitStageAnswer={submitStageAnswer}
+      quitGame={quitGame}
+      game={game}
+    />
+  );
 };
 
 const mapStateToProps = state => ({
   // questions: state.questions,
   // score: state.score,
   // room: state.room,
-  game: state.game,
+  game: state.game
 });
 
 export default connect(mapStateToProps, {
@@ -66,6 +78,6 @@ export default connect(mapStateToProps, {
   // updateGame,
   cleanGame,
   subscribeGame,
-  unsubscribeGame,
+  unsubscribeGame
   // unsubscribeCreateRoom,
 })(Game);

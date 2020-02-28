@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 // import score from "./score";
 // import room from "./room";
 import user from "./user";
-import game from './game';
+import game from "./game";
 
 //questions, score, room,
 

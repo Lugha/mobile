@@ -14,31 +14,29 @@ const styles = StyleSheet.create({
     alignItems: "stretch"
   },
   buttonQuit: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
     marginRight: 20,
     marginTop: 20,
-    width: 100,
-  },
+    width: 100
+  }
 });
 
 const GameView = ({ submitStageAnswer, quitGame, game }) => {
-  return (game.active
-    ? <Container style={styles.container}>
-        <Score />
-        <Button
-          style={styles.buttonQuit}
-          block
-          rounded
-          onPress={quitGame}>
-          <Text>Quitter</Text>
-        </Button>
-        <Sentence sentence={game.stageData.sentence} />
-        <AnswersView
-          submitStageAnswer={submitStageAnswer}
-          translations={game.stageData.traductions}
-          quitGame={quitGame}/>
-      </Container>
-    : <GameEndView quitGame={quitGame}/>
+  return game.active ? (
+    <Container style={styles.container}>
+      <Score />
+      <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
+        <Text>Quitter</Text>
+      </Button>
+      <Sentence sentence={game.stageData.sentence} />
+      <AnswersView
+        submitStageAnswer={submitStageAnswer}
+        translations={game.stageData.traductions}
+        quitGame={quitGame}
+      />
+    </Container>
+  ) : (
+    <GameEndView quitGame={quitGame} />
   );
 };
 

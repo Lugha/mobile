@@ -21,6 +21,7 @@ function AnswersView({ translations, submitStageAnswer }) {
         {translations &&
           translations.map((translation, index) => (
             <Answer
+              key={index}
               response={index}
               translation={translation}
               submitStageAnswer={submitStageAnswer}

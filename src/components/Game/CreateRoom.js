@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 // import socketManager from "../../middlewares/socketManager";
 
 // import {
-  // subscribeCreateRoom,
-  // unsubscribeCreateRoom,
-  // emitCreateRoom,
-  // emitJoinRoom,
-  // emitCancelCreateRoom
+// subscribeCreateRoom,
+// unsubscribeCreateRoom,
+// emitCreateRoom,
+// emitJoinRoom,
+// emitCancelCreateRoom
 // } from "../../actions/room";
 
 import {
@@ -19,8 +19,8 @@ import {
   emitJoinRoom,
   emitJoinWaitingList,
   cleanGame,
-  emitLeaveWaitingList,
-} from "../../actions/game"
+  emitLeaveWaitingList
+} from "../../actions/game";
 
 // import Game from "../../containers/Game";
 
@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
   },
   buttonCancel: {
     padding: 20,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '50%'
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "50%"
   }
 });
 
@@ -50,7 +50,7 @@ const CreateRoom = ({
   emitJoinWaitingList,
   cleanGame,
   subscribeGame,
-  unsubscribeGame,
+  unsubscribeGame
 
   // emitCancelCreateRoom
 }) => {
@@ -99,6 +99,6 @@ export default connect(mapStateToProps, {
   emitJoinWaitingList,
   cleanGame,
   subscribeGame,
-  unsubscribeGame,
+  unsubscribeGame
   // emitCancelCreateRoom
 })(CreateRoom);

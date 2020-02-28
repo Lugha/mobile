@@ -10,10 +10,10 @@ export default function(state = {}, action) {
     //   console.log({ result: action.result })
     //   return { ...state, ...JSON.parse(action.result) };
     case STORE_GAME:
-      return {...state, ...JSON.parse(action.result) };
+      return { ...state, ...JSON.parse(action.result) };
     case CLEAN_GAME:
-      return {}
+      return {};
     default:
       return state;
-  };
+  }
 }
