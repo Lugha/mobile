@@ -1,10 +1,9 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
-import Sentence from "./Sentence";
-import AnswersView from "./AnswersView";
+import Sentence from "../Sentence";
+import Answers from "../Answers";
 import { Container, Button } from "native-base";
-import Score from "../../containers/Score";
-import GameEndView from "./GameEndView";
+// import Score from "../../../containers/Score";
 
 const styles = StyleSheet.create({
   container: {
@@ -21,23 +20,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameView = ({ submitStageAnswer, quitGame, game }) => {
-  return game.active ? (
+const GameStageView = ({ submitStageAnswer, quitGame, game }) => {
+  return (
     <Container style={styles.container}>
-      <Score />
+      {/* <Score /> */}
       <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
         <Text>Quitter</Text>
       </Button>
       <Sentence sentence={game.stageData.sentence} />
-      <AnswersView
+      <Answers
         submitStageAnswer={submitStageAnswer}
         translations={game.stageData.traductions}
         quitGame={quitGame}
       />
     </Container>
-  ) : (
-    <GameEndView quitGame={quitGame} />
   );
 };
 
-export default GameView;
+export default GameStageView;

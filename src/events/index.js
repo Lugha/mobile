@@ -1,3 +1,5 @@
-// export const GET_RANDOM_ROUND = "GET_RANDOM_ROUND";
-// export const CREATE_ROOM = "CREATE_ROOM";
 export const UPDATE_GAME = "UPDATE_GAME";
+export const JOIN_WAITINGLIST = "JOIN_WAITINGLIST";
+export const LEAVE_WAITINGLIST = "LEAVE_WAITINGLIST";
+export const JOIN_ROOM = "JOIN_ROOM";
+export const LEAVE_ROOM = "LEAVE_ROOM";

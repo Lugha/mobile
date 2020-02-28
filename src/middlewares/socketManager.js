@@ -35,7 +35,6 @@ function socketManager() {
     if (typeof handleEvent === "string") {
       handleEvent = result => dispatch({ type: handle, result, ...rest });
     }
-    alert("EVENT ON: [" + event + "]");
     return socket.on(event, handleEvent);
   };
 }

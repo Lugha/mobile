@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import Answer from "./Answer";
-import { Button, Container, Content } from "native-base";
+import { Container, Content } from "native-base";
 
 const styles = StyleSheet.create({
   view: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function AnswersView({ translations, submitStageAnswer }) {
+function Answers({ translations, submitStageAnswer }) {
   return (
     <Container style={styles.view}>
       <Content>
@@ -32,4 +32,4 @@ function AnswersView({ translations, submitStageAnswer }) {
   );
 }
 
-export default AnswersView;
+export default Answers;

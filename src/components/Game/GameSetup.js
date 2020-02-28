@@ -3,16 +3,6 @@ import { Text, StyleSheet } from "react-native";
 import { Container, Spinner, Button } from "native-base";
 import { connect } from "react-redux";
 
-// import socketManager from "../../middlewares/socketManager";
-
-// import {
-// subscribeCreateRoom,
-// unsubscribeCreateRoom,
-// emitCreateRoom,
-// emitJoinRoom,
-// emitCancelCreateRoom
-// } from "../../actions/room";
-
 import {
   subscribeGame,
   unsubscribeGame,
@@ -21,8 +11,6 @@ import {
   cleanGame,
   emitLeaveWaitingList
 } from "../../actions/game";
-
-// import Game from "../../containers/Game";
 
 const styles = StyleSheet.create({
   container: {
@@ -39,27 +27,19 @@ const styles = StyleSheet.create({
   }
 });
 
-const CreateRoom = ({
+const GameSetup = ({
   navigation,
   game,
-  // room,
-  // subscribeCreateRoom,
-  // unsubscribeCreateRoom,
-  // emitCreateRoom,
   emitJoinRoom,
   emitJoinWaitingList,
   cleanGame,
   subscribeGame,
   unsubscribeGame
-
-  // emitCancelCreateRoom
 }) => {
   function cancel() {
     emitLeaveWaitingList();
     cleanGame();
     unsubscribeGame();
-    // emitCancelCreateRoom();
-    // unsubscribeCreateRoom();
     navigation.navigate("Menu");
   }
 
@@ -67,11 +47,8 @@ const CreateRoom = ({
     if (!game.room) {
       subscribeGame();
       emitJoinWaitingList();
-      // subscribeCreateRoom();
-      // emitCreateRoom();
     } else {
       emitJoinRoom(game.room);
-      // unsubscribeCreateRoom();
       navigation.navigate("Game");
     }
   }, [game.room]);
@@ -92,13 +69,9 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  // subscribeCreateRoom,
-  // unsubscribeCreateRoom,
-  // emitCreateRoom,
   emitJoinRoom,
   emitJoinWaitingList,
   cleanGame,
   subscribeGame,
   unsubscribeGame
-  // emitCancelCreateRoom
-})(CreateRoom);
+})(GameSetup);

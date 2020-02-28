@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Content, Text } from "native-base";
+import { Container, Text } from "native-base";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const ScoreView = ({ score = 0 }) => {
+const Score = ({ score = 0 }) => {
   return (
     <Container style={styles.container}>
       <Text style={styles.score}>Score</Text>
@@ -33,4 +33,4 @@ const ScoreView = ({ score = 0 }) => {
   );
 };
 
-export default ScoreView;
+export default Score;

@@ -1,15 +1,15 @@
-import { UPDATE_GAME } from "../events";
+import { 
+  UPDATE_GAME, 
+  JOIN_ROOM, 
+  JOIN_WAITINGLIST, 
+  LEAVE_ROOM, 
+  LEAVE_WAITINGLIST } from "../events";
 
 export const CLEAN_GAME = "CLEAN_GAME";
 export const STORE_GAME = "STORE_GAME";
-export const JOIN_WAITINGLIST = "JOIN_WAITINGLIST";
-export const LEAVE_WAITINGLIST = "LEAVE_WAITINGLIST";
-export const JOIN_ROOM = "JOIN_ROOM";
-export const LEAVE_ROOM = "LEAVE_ROOM";
 
 //SUBSCRIBE ACTIONS
 export const subscribeGame = () => {
-  alert("subscribing");
   return {
     handle: STORE_GAME,
     event: UPDATE_GAME
@@ -70,21 +70,3 @@ export const emitLeaveRoom = room => {
     payload: { room }
   };
 };
-
-// export const subscribeEndGame = () => {
-//   return {
-//     handle: STORE_END_GAME,
-//     event: GET_END_GAME,
-//   };
-// };
-
-// export const updateGame = () => {
-//   return {type: UPDATE_GAME};
-// };
-
-// export const unsubscribeEndGame = () => {
-//   return {
-//     event: GET_END_GAME,
-//     leave: true
-//   };
-// };

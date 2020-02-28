@@ -5,8 +5,6 @@ import { Container, Button, Text, Content } from "native-base";
 
 import { updateUser } from "../../actions/user";
 
-// import Game from "../Game";
-
 const styles = StyleSheet.create({
   title: {
     fontSize: 40,
@@ -29,8 +27,6 @@ const styles = StyleSheet.create({
     padding: 20
   }
 });
-
-// const categories = ["Jouer", "Réviser", ""];
 
 const Menu = ({ navigation, user, updateUser }) => {
   function disconnect() {
