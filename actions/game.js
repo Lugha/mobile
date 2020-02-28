@@ -1,41 +1,41 @@
 import { UPDATE_GAME } from "../events";
 
-export const CLEAN_GAME = "CLEAN_GAME"
-export const STORE_GAME = "STORE_GAME"; 
+export const CLEAN_GAME = "CLEAN_GAME";
+export const STORE_GAME = "STORE_GAME";
 export const JOIN_WAITINGLIST = "JOIN_WAITINGLIST";
 export const LEAVE_WAITINGLIST = "LEAVE_WAITINGLIST";
 export const JOIN_ROOM = "JOIN_ROOM";
+export const LEAVE_ROOM = "LEAVE_ROOM";
 
 //SUBSCRIBE ACTIONS
 export const subscribeGame = () => {
-  alert('subscribing')
+  alert("subscribing");
   return {
     handle: STORE_GAME,
-    event: UPDATE_GAME, 
-  }
-}
+    event: UPDATE_GAME
+  };
+};
 
 export const unsubscribeGame = () => {
   return {
     event: UPDATE_GAME,
-    leave: true,
-  }
-}
+    leave: true
+  };
+};
 
 //EMIT ACTIONS
 export const emitUpdateStage = (room, currentGameSuccess) => {
   return {
     event: UPDATE_GAME,
     emit: true,
-    payload: { room, currentGameSuccess }
+    payload: { room, choice: currentGameSuccess }
   };
 };
-
 
 //CLEAN STORE ACTIONS
 export const cleanGame = () => {
   return {
-    type: CLEAN_GAME,
+    type: CLEAN_GAME
   };
 };
 
@@ -43,16 +43,16 @@ export const cleanGame = () => {
 export const emitJoinWaitingList = () => {
   return {
     event: JOIN_WAITINGLIST,
-    emit: true,
+    emit: true
   };
 };
 
 export const emitLeaveWaitingList = () => {
   return {
     event: LEAVE_WAITINGLIST,
-    emit: true,
+    emit: true
   };
-}
+};
 
 //ROOM ACTIONS
 export const emitJoinRoom = room => {

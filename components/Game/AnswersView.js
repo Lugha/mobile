@@ -14,20 +14,18 @@ const styles = StyleSheet.create({
   }
 });
 
-function AnswersView({ translations, submitStageAnswer}) {
+function AnswersView({ translations, submitStageAnswer }) {
   return (
     <Container style={styles.view}>
       <Content>
-        { translations && 
+        {translations &&
           translations.map((translation, index) => (
-              <Answer
-                key={index}
-                translation={translation}
-                submitStageAnswer={submitStageAnswer}
-              />
-            )
-          )
-        }
+            <Answer
+              response={index}
+              translation={translation}
+              submitStageAnswer={submitStageAnswer}
+            />
+          ))}
       </Content>
     </Container>
   );

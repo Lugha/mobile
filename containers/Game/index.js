@@ -27,6 +27,7 @@ const Game = ({
   // const [round, useRound] = useState(0);
 
   function submitStageAnswer(key) {
+    console.log({ key })
     emitUpdateStage(game.room, key);
     // useRound(round + 1);
   }
