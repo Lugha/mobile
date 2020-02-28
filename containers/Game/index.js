@@ -43,7 +43,6 @@ const Game = ({
   useEffect(() => {
     // subscribeQuestions();
     console.log(game.room)
-    emitUpdateStage(game.room, true);
   }, []);
           
   return <GameView submitStageAnswer={submitStageAnswer} quitGame={quitGame} game={game}/>;
