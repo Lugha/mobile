@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Container, Button } from "native-base";
 
-import { useCountdown } from "../../../../hooks/useCountdown";
+import CountdownCircle from "react-native-countdown-circle";
 
 import GameWaitOpponent from "../GameWaitOpponent";
 import Sentence from "../../Sentence";
@@ -26,23 +26,28 @@ const styles = StyleSheet.create({
 const GameStage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
   const [countdown, setCountdown] = useState(10);
 
-  useCountdown(
-    () => {
-      submitStageAnswer(null);
-    },
-    countdown,
-    setCountdown
-  );
+  function handleSubmitStageAnswer(key) {
+    submitStageAnswer(key);
+    setCountdown(10);
+  }
 
   return !submitedAnswer ? (
     <Container style={styles.container}>
-      <Text>{countdown} / s</Text>
+      <CountdownCircle
+        seconds={countdown}
+        radius={30}
+        borderWidth={8}
+        color="#ff003f"
+        bgColor="#fff"
+        textStyle={{ fontSize: 20 }}
+        onTimeElapsed={() => submitStageAnswer(null)}
+      />
       <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
         <Text>Quitter</Text>
       </Button>
       <Sentence sentence={game.stageData.sentence} />
       <Answers
-        submitStageAnswer={submitStageAnswer}
+        submitStageAnswer={handleSubmitStageAnswer}
         translations={game.stageData.traductions}
         quitGame={quitGame}
       />
