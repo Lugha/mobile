@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
+import { Container, Button } from "native-base";
+
+import { useCountdown } from "../../../../hooks/useCountdown";
+
+import GameWaitOpponent from "../GameWaitOpponent";
 import Sentence from "../../Sentence";
 import Answers from "../../Answers";
-import { Container, Button } from "native-base";
-import GameWaitOpponent from "../GameWaitOpponent";
-// import Score from "../../../containers/Score";
 
 const styles = StyleSheet.create({
   container: {
@@ -22,20 +24,31 @@ const styles = StyleSheet.create({
 });
 
 const GameStage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
-  return (!submitedAnswer
-    ? <Container style={styles.container}>
-        {/* <Score /> */}
-        <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
-          <Text>Quitter</Text>
-        </Button>
-        <Sentence sentence={game.stageData.sentence} />
-        <Answers
-          submitStageAnswer={submitStageAnswer}
-          translations={game.stageData.traductions}
-          quitGame={quitGame}
-        />
-      </Container>
-    : <GameWaitOpponent />
+  const [countdown, setCountdown] = useState(10);
+
+  useCountdown(
+    () => {
+      submitStageAnswer(null);
+    },
+    countdown,
+    setCountdown
+  );
+
+  return !submitedAnswer ? (
+    <Container style={styles.container}>
+      <Text>{countdown} / s</Text>
+      <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
+        <Text>Quitter</Text>
+      </Button>
+      <Sentence sentence={game.stageData.sentence} />
+      <Answers
+        submitStageAnswer={submitStageAnswer}
+        translations={game.stageData.traductions}
+        quitGame={quitGame}
+      />
+    </Container>
+  ) : (
+    <GameWaitOpponent />
   );
 };
 

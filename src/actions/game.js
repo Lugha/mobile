@@ -1,9 +1,10 @@
-import { 
-  UPDATE_GAME, 
-  JOIN_ROOM, 
-  JOIN_WAITINGLIST, 
-  LEAVE_ROOM, 
-  LEAVE_WAITINGLIST } from "../events";
+import {
+  UPDATE_GAME,
+  JOIN_ROOM,
+  JOIN_WAITINGLIST,
+  LEAVE_ROOM,
+  LEAVE_WAITINGLIST
+} from "../events";
 
 export const CLEAN_GAME = "CLEAN_GAME";
 export const STORE_GAME = "STORE_GAME";

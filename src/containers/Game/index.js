@@ -29,12 +29,11 @@ const GameBuilder = ({
   function quitGame() {
     unsubscribeGame();
     emitLeaveRoom(game.room);
-    cleanGame(),
-    navigation.navigate("Menu");
+    cleanGame(), navigation.navigate("Menu");
   }
 
   useEffect(() => {
-    if (submitedAnswer) setSubmitedAnswer(false) 
+    if (submitedAnswer) setSubmitedAnswer(false);
   }, [game.stageData]);
 
   return (
