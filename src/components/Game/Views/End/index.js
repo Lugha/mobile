@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function GameEnd({ quitGame }) {
+function End({ quitGame }) {
   return (
     <Container style={styles.container}>
       <Text>Fin du jeu</Text>
@@ -29,4 +29,4 @@ function GameEnd({ quitGame }) {
   );
 }
 
-export default GameEnd;
+export default End;

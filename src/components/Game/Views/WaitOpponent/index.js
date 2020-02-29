@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function GameWaitOpponent() {
+function WaitOpponent() {
   return (
     <Container style={styles.container}>
       <Text>Waiting for the opponent to play</Text>
@@ -20,4 +20,4 @@ function GameWaitOpponent() {
   );
 }
 
-export default GameWaitOpponent;
+export default WaitOpponent;

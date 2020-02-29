@@ -4,7 +4,8 @@ import { Container, Button } from "native-base";
 
 import CountdownCircle from "react-native-countdown-circle";
 
-import GameWaitOpponent from "../GameWaitOpponent";
+import WaitBefore from '../WaitBefore';
+import WaitOpponent from "../WaitOpponent";
 import Sentence from "../../Sentence";
 import Answers from "../../Answers";
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const GameStage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
+const Stage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
   const [countdown, setCountdown] = useState(10);
 
   function handleSubmitStageAnswer(key) {
@@ -53,8 +54,8 @@ const GameStage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
       />
     </Container>
   ) : (
-    <GameWaitOpponent />
+    <WaitOpponent />
   );
 };
 
-export default GameStage;
+export default Stage;

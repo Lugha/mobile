@@ -1,17 +1,17 @@
 import React from "react";
-import GameStage from "./Views/GameStage";
-import GameEnd from "./Views/GameEnd";
+import End from "./Views/End";
+import WaitBefore from "./Views/WaitBefore";
 
 const Game = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
   return game.active ? (
-    <GameStage
+    <WaitBefore
       submitedAnswer={submitedAnswer}
       submitStageAnswer={submitStageAnswer}
       game={game}
       quitGame={quitGame}
     />
   ) : (
-    <GameEnd quitGame={quitGame} />
+    <End quitGame={quitGame} />
   );
 };
 
