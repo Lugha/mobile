@@ -34,7 +34,7 @@ export const emitUpdateStage = payload => {
 };
 
 //CLEAN STORE ACTIONS
-export const cleanGame = () => {
+export const resetGame = () => {
   return {
     type: CLEAN_GAME
   };

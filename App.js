@@ -18,7 +18,7 @@ console.disableYellowBox = true;
 const initialState = {};
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancer(
-  applyMiddleware(logger),
+//  applyMiddleware(logger),
   applyMiddleware(socketManager()),
   applyMiddleware(thunk)
 );

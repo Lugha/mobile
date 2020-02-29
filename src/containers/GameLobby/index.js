@@ -8,7 +8,7 @@ import {
   unsubscribeGame,
   emitJoinRoom,
   emitJoinWaitingList,
-  cleanGame,
+  resetGame,
   emitLeaveWaitingList
 } from "../../actions/game";
 
@@ -32,13 +32,13 @@ const GameLobby = ({
   game,
   emitJoinRoom,
   emitJoinWaitingList,
-  cleanGame,
+  resetGame,
   subscribeGame,
   unsubscribeGame
 }) => {
   function cancel() {
     emitLeaveWaitingList();
-    cleanGame();
+    resetGame();
     unsubscribeGame();
     navigation.navigate("Menu");
   }
@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   emitJoinRoom,
   emitJoinWaitingList,
-  cleanGame,
+  resetGame,
   subscribeGame,
   unsubscribeGame
 })(GameLobby);

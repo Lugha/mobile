@@ -25,7 +25,7 @@ const WaitBefore = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
 
   return !isStage ? (
     <Container style={styles.container}>
-      <Text>Le prochain round va démarrer</Text>
+      <Text>Le prochain jeu va démarrer</Text>
       <CountdownCircle
         seconds={countdown}
         radius={30}

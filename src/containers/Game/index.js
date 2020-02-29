@@ -5,7 +5,7 @@ import {
   emitUpdateStage,
   subscribeGame,
   unsubscribeGame,
-  cleanGame,
+  resetGame,
   emitLeaveRoom
 } from "../../actions/game";
 
@@ -14,7 +14,7 @@ import Game from "../../components/Game";
 const GameBuilder = ({
   navigation,
   game,
-  cleanGame,
+  resetGame,
   unsubscribeGame,
   emitUpdateStage,
   emitLeaveRoom
@@ -30,7 +30,8 @@ const GameBuilder = ({
     unsubscribeGame();
     emitLeaveRoom(game.room);
     emitUpdateStage({ room: game.room, leave: true });
-    cleanGame(), navigation.navigate("Menu");
+    resetGame();
+    navigation.navigate("Menu");
   }
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   emitUpdateStage,
   emitLeaveRoom,
-  cleanGame,
+  resetGame,
   subscribeGame,
   unsubscribeGame
 })(GameBuilder);

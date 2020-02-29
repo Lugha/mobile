@@ -4,7 +4,7 @@ import { Container, Button } from "native-base";
 
 import CountdownCircle from "react-native-countdown-circle";
 
-import WaitBefore from '../WaitBefore';
+import WaitBefore from "../WaitBefore";
 import WaitOpponent from "../WaitOpponent";
 import Sentence from "../../Sentence";
 import Answers from "../../Answers";
@@ -43,6 +43,7 @@ const Stage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
         textStyle={{ fontSize: 20 }}
         onTimeElapsed={() => submitStageAnswer(null)}
       />
+      <Text>Round:{game.actualRound}</Text>
       <Button style={styles.buttonQuit} block rounded onPress={quitGame}>
         <Text>Quitter</Text>
       </Button>
