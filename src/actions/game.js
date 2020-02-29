@@ -25,11 +25,11 @@ export const unsubscribeGame = () => {
 };
 
 //EMIT ACTIONS
-export const emitUpdateStage = (room, currentGameSuccess) => {
+export const emitUpdateStage = payload => {
   return {
     event: UPDATE_GAME,
     emit: true,
-    payload: { room, choice: currentGameSuccess }
+    payload
   };
 };
 

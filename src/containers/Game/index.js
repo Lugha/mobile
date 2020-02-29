@@ -22,13 +22,14 @@ const GameBuilder = ({
   const [submitedAnswer, setSubmitedAnswer] = useState(false);
 
   function submitStageAnswer(key) {
-    emitUpdateStage(game.room, key);
+    emitUpdateStage({ room: game.room, choice: key });
     setSubmitedAnswer(true);
   }
 
   function quitGame() {
     unsubscribeGame();
     emitLeaveRoom(game.room);
+    emitUpdateStage({ room: game.room, leave: true });
     cleanGame(), navigation.navigate("Menu");
   }
 

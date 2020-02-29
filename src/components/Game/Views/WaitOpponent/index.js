@@ -11,7 +11,14 @@ const styles = StyleSheet.create({
   }
 });
 
-function WaitOpponent() {
+function WaitOpponent({ game, quitGame }) {
+  useEffect(() => {
+    console.log(game);
+    if (!game.active) {
+      quitGame();
+    }
+  }, [game]);
+
   return (
     <Container style={styles.container}>
       <Text>Waiting for the opponent to play</Text>

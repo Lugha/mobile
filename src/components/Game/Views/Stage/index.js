@@ -54,7 +54,7 @@ const Stage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
       />
     </Container>
   ) : (
-    <WaitOpponent />
+    <WaitOpponent game={game} quitGame={quitGame} />
   );
 };
 
