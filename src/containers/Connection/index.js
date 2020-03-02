@@ -59,7 +59,7 @@ const Connection = ({ navigation, user, connectUser }) => {
 
   useEffect(() => {
     if (user && user.token) {
-      navigation.navigate("Menu");
+      navigation.navigate("Home");
     }
   }, [user]);
 

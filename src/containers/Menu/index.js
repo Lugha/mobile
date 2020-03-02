@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 const Menu = ({ navigation, user, updateUser }) => {
   function disconnect() {
     updateUser(null);
-    navigation.navigate("Connection");
+    navigation.navigate("Auth");
   }
 
   return (
@@ -43,7 +43,7 @@ const Menu = ({ navigation, user, updateUser }) => {
             style={styles.button}
             block
             rounded
-            onPress={() => navigation.navigate("Jouer")}
+            onPress={() => navigation.navigate("Game")}
           >
             <Text>Jouer</Text>
           </Button>

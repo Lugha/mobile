@@ -1,6 +1,7 @@
 import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Container, Button } from "native-base";
+import { useRoute } from "@react-navigation/native";
 
 import Stage from "../Stage";
 
@@ -15,15 +16,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const WaitBefore = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
-  const [isStage, setisStage] = useState(false);
-  const [countdown, setCountdown] = useState(3);
+const BeginStage = ({ route, navigation }) => {
+  const countdown = 3;
 
-  useEffect(() => {
-    setisStage(false);
-  }, [game.stageData]);
+  console.log(route.params);
 
-  return !isStage ? (
+  return (
     <Container style={styles.container}>
       <Text>Le prochain jeu va démarrer</Text>
       <CountdownCircle
@@ -33,17 +31,10 @@ const WaitBefore = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
         color="#ff003f"
         bgColor="#fff"
         textStyle={{ fontSize: 20 }}
-        onTimeElapsed={() => setisStage(true)}
+        onTimeElapsed={() => navigation.navigate("Stage", route.params)}
       />
     </Container>
-  ) : (
-    <Stage
-      submitedAnswer={submitedAnswer}
-      submitStageAnswer={submitStageAnswer}
-      quitGame={quitGame}
-      game={game}
-    />
   );
 };
 
-export default WaitBefore;
+export default BeginStage;

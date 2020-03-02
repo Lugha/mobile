@@ -8,8 +8,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 
 import * as Font from "expo-font";
 import socketManager from "./src/middlewares/socketManager";
-import thunk from 'redux-thunk';
-import AppNavigator from "./src/containers";
+import thunk from "redux-thunk";
+import RootSwitch from "./src/navigator";
 import reducers from "./src/reducers";
 import logger from "redux-logger";
 
@@ -18,7 +18,7 @@ console.disableYellowBox = true;
 const initialState = {};
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancer(
-//  applyMiddleware(logger),
+  //  applyMiddleware(logger),
   applyMiddleware(socketManager()),
   applyMiddleware(thunk)
 );
@@ -60,7 +60,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <StatusBar hidden />
-      <AppNavigator />
+      <RootSwitch />
     </Provider>
   );
 };

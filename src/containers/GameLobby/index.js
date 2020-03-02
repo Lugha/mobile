@@ -40,7 +40,7 @@ const GameLobby = ({
     emitLeaveWaitingList();
     resetGame();
     unsubscribeGame();
-    navigation.navigate("Menu");
+    navigation.navigate("Home");
   }
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const GameLobby = ({
       emitJoinWaitingList();
     } else {
       emitJoinRoom(game.room);
-      navigation.navigate("Game");
+      navigation.navigate("BeginGame");
     }
   }, [game.room]);
 

@@ -4,10 +4,8 @@ import { Container, Button } from "native-base";
 
 import CountdownCircle from "react-native-countdown-circle";
 
-import WaitBefore from "../WaitBefore";
-import WaitOpponent from "../WaitOpponent";
-import Sentence from "../../Sentence";
-import Answers from "../../Answers";
+import Sentence from "../../../components/Game/Sentence";
+import Answers from "../../../components/Game/Answers";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,15 +22,11 @@ const styles = StyleSheet.create({
   }
 });
 
-const Stage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
-  const [countdown, setCountdown] = useState(10);
+const Stage = ({ route }) => {
+  const countdown = 10;
+  const { submitStageAnswer, quitGame, game } = route.params;
 
-  function handleSubmitStageAnswer(key) {
-    submitStageAnswer(key);
-    setCountdown(10);
-  }
-
-  return !submitedAnswer ? (
+  return (
     <Container style={styles.container}>
       <CountdownCircle
         seconds={countdown}
@@ -49,13 +43,11 @@ const Stage = ({ submitedAnswer, submitStageAnswer, quitGame, game }) => {
       </Button>
       <Sentence sentence={game.stageData.sentence} />
       <Answers
-        submitStageAnswer={handleSubmitStageAnswer}
+        submitStageAnswer={submitStageAnswer}
         translations={game.stageData.traductions}
         quitGame={quitGame}
       />
     </Container>
-  ) : (
-    <WaitOpponent game={game} quitGame={quitGame} />
   );
 };
 

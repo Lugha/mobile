@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import {
   emitUpdateStage,
-  subscribeGame,
   unsubscribeGame,
+  emitLeaveRoom,
   resetGame,
-  emitLeaveRoom
-} from "../../actions/game";
+  subscribeGame
+} from "../../../actions/game";
 
-import Game from "../../components/Game";
-
-const GameBuilder = ({
+const BeginGame = ({
   navigation,
   game,
   resetGame,
@@ -19,11 +17,18 @@ const GameBuilder = ({
   emitUpdateStage,
   emitLeaveRoom
 }) => {
-  const [submitedAnswer, setSubmitedAnswer] = useState(false);
-
   function submitStageAnswer(key) {
     emitUpdateStage({ room: game.room, choice: key });
-    setSubmitedAnswer(true);
+    if (game.stageFailed) {
+      navigation.navigate("EndRound", {
+        quitGame,
+        game
+      });
+    }
+    navigation.navigate("WaitingOpponent", {
+      quitGame,
+      game
+    });
   }
 
   function quitGame() {
@@ -31,21 +36,18 @@ const GameBuilder = ({
     emitLeaveRoom(game.room);
     emitUpdateStage({ room: game.room, leave: true });
     resetGame();
-    navigation.navigate("Menu");
+    navigation.navigate("Home");
   }
 
   useEffect(() => {
-    if (submitedAnswer) setSubmitedAnswer(false);
-  }, [game.stageData]);
+    navigation.navigate("BeginRound", {
+      submitStageAnswer,
+      quitGame,
+      game
+    });
+  });
 
-  return (
-    <Game
-      submitedAnswer={submitedAnswer}
-      submitStageAnswer={submitStageAnswer}
-      quitGame={quitGame}
-      game={game}
-    />
-  );
+  return <></>;
 };
 
 const mapStateToProps = state => ({
@@ -58,4 +60,4 @@ export default connect(mapStateToProps, {
   resetGame,
   subscribeGame,
   unsubscribeGame
-})(GameBuilder);
+})(BeginGame);

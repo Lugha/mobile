@@ -11,13 +11,22 @@ const styles = StyleSheet.create({
   }
 });
 
-function WaitOpponent({ game, quitGame }) {
+function WaitingOpponent({ route, navigation }) {
+  const [firstEffect, setFirstEffect] = useState(false);
+  const { game, quitGame } = route.params;
+
   useEffect(() => {
-    console.log(game);
-    if (!game.active) {
-      quitGame();
+    console.log({ gameactibe: game.active });
+    if (!game.active) quitGame();
+  }, [game.active]);
+
+  useEffect(() => {
+    if (firstEffect) {
+      navigation.navigate("BeginStage", route.params);
+    } else {
+      setFirstEffect(true);
     }
-  }, [game]);
+  }, [game.stageData]);
 
   return (
     <Container style={styles.container}>
@@ -27,4 +36,4 @@ function WaitOpponent({ game, quitGame }) {
   );
 }
 
-export default WaitOpponent;
+export default WaitingOpponent;

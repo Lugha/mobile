@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Button, Text, Container } from "native-base";
 import { StyleSheet } from "react-native";
+
+import EndRound from "../EndRound";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,7 +20,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function End({ quitGame }) {
+function EndGame({ quitGame, game }) {
   return (
     <Container style={styles.container}>
       <Text>Fin du jeu</Text>
@@ -29,4 +31,4 @@ function End({ quitGame }) {
   );
 }
 
-export default End;
+export default EndGame;
