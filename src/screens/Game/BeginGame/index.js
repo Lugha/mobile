@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import {
-  emitUpdateStage,
+  emitUpdateGame,
   unsubscribeGame,
   emitLeaveRoom,
   resetGame,
@@ -14,38 +14,50 @@ const BeginGame = ({
   game,
   resetGame,
   unsubscribeGame,
-  emitUpdateStage,
+  emitUpdateGame,
   emitLeaveRoom
 }) => {
+
   function submitStageAnswer(key) {
-    emitUpdateStage({ room: game.room, choice: key });
-    if (game.stageFailed) {
-      navigation.navigate("EndRound", {
-        quitGame,
-        game
-      });
-    }
-    navigation.navigate("WaitingOpponent", {
+    if (!game.waitingNextStage)
+      navigation.navigate("WaitingOpponent", {
       quitGame,
       game
     });
+    emitUpdateGame({ room: game.room, choice: key });
+    // if (game.stageFailed) {
+    //   navigation.navigate("EndRound", {
+    //     quitGame,
+    //     game
+    //   });
+    // }
   }
 
   function quitGame() {
     unsubscribeGame();
     emitLeaveRoom(game.room);
-    emitUpdateStage({ room: game.room, leave: true });
+    emitUpdateGame({ room: game.room, leave: true });
     resetGame();
     navigation.navigate("Home");
   }
 
+  // const [timerFinish, setTimerFinish] = useState(false)
+
   useEffect(() => {
-    navigation.navigate("BeginRound", {
-      submitStageAnswer,
-      quitGame,
-      game
-    });
-  });
+    if (game.stageFailed && game.waitingNextStage === 2) {
+      navigation.navigate("EndRound", {
+        submitStageAnswer,
+        quitGame,
+        game,
+      });
+    } else if (!game.waitingNextStage){
+      navigation.navigate("BeginRound", {
+        submitStageAnswer,
+        quitGame,
+        game
+      });
+    };
+  }, [game.stageData, game.stageFailed, game.waitingNextStage]);
 
   return <></>;
 };
@@ -55,7 +67,7 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-  emitUpdateStage,
+  emitUpdateGame,
   emitLeaveRoom,
   resetGame,
   subscribeGame,

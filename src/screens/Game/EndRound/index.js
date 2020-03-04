@@ -16,15 +16,15 @@ const styles = StyleSheet.create({
 function EndRound({ route, navigation }) {
   const countdown = 5;
 
-  const { game } = route.params;
+  const { game, setWaitingTimer } = route.params;
 
-  function where() {
-    if (game.actualRound < game.roundTotal) {
-      navigation.navigate("BeginRound");
-    } else {
-      navigation.navigate("EndGame");
-    }
-  }
+  // function where() {
+  //   if (game.actualRound < game.roundTotal) {
+  //     navigation.navigate("BeginRound");
+  //   } else {
+  //     navigation.navigate("EndGame");
+  //   }
+  // }
 
   return (
     <Container style={styles.container}>
@@ -35,7 +35,7 @@ function EndRound({ route, navigation }) {
         color="#ff003f"
         bgColor="#fff"
         textStyle={{ fontSize: 20 }}
-        onTimeElapsed={() => where()}
+        onTimeElapsed={() => null}
       />
       <Text>End of the round</Text>
       <Text>Explications</Text>

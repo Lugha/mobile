@@ -25,7 +25,7 @@ export const unsubscribeGame = () => {
 };
 
 //EMIT ACTIONS
-export const emitUpdateStage = payload => {
+export const emitUpdateGame = payload => {
   return {
     event: UPDATE_GAME,
     emit: true,
