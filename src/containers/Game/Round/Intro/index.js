@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import RoundIntro from "../../../../components/Game/Round/Intro";
 
 const index = ({ navigation, game }) => {
   useEffect(() => {
-    setTimeout(() => navigation.navigate("GameStageIntro"), 3000);
+    setTimeout(() => navigation.replace("GameStageIntro"), 3000);
   });
 
   return <RoundIntro round={game.actualRound} />;

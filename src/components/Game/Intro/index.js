@@ -5,7 +5,7 @@ import styles from "./style";
 
 const index = ({ goToGameStageIntro }) => {
   useEffect(() => {
-    setTimeout(() => goToGameStageIntro(), 5000);
+    setTimeout(() => goToGameStageIntro(), 2000);
   });
 
   return <Text style={styles.title}>La partie va commencer</Text>;

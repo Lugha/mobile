@@ -25,7 +25,7 @@ const index = ({
     emitLeaveWaitingList();
     resetGame();
     unsubscribeGame();
-    navigation.navigate("Menu");
+    navigation.replace("Menu");
   }
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const index = ({
     } else {
       console.log({ room: game.room });
       emitJoinRoom(game.room);
-      navigation.navigate("GameIntro");
+      navigation.replace("GameIntro");
     }
   }, [game.room]);
 

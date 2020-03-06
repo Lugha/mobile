@@ -4,7 +4,7 @@ import StageIntro from "../../../../../components/Game/Round/Stage/Intro";
 
 const index = ({ navigation, game, emitUpdateGame }) => {
   function goToStage() {
-    navigation.navigate("GameStage");
+    navigation.replace("GameStage");
   }
 
   return <StageIntro goToStage={goToStage} countdown={3} />;

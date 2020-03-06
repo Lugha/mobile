@@ -24,7 +24,7 @@ const index = ({
     emitLeaveRoom(game.room);
     emitUpdateGame({ room: game.room, leave: true });
     resetGame();
-    navigation.navigate("Menu");
+    navigation.replace("Menu");
   }
   return <GameEnd quitGame={quitGame} />;
 };

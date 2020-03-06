@@ -16,12 +16,12 @@ const index = ({ navigation, user, connectUser }) => {
   }
 
   function goToRegistration() {
-    navigation.navigate("Registration");
+    navigation.replace("Registration");
   }
 
   useEffect(() => {
     if (user && user.token) {
-      navigation.navigate("Menu");
+      navigation.replace("Menu");
     }
   }, [user]);
 

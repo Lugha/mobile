@@ -4,7 +4,7 @@ import GameIntro from "../../../components/Game/Intro";
 
 const index = ({ navigation }) => {
   function goToGameStageIntro() {
-    navigation.navigate("GameStageIntro");
+    navigation.replace("GameStageIntro");
   }
 
   return <GameIntro goToGameStageIntro={goToGameStageIntro} />;

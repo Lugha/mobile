@@ -15,7 +15,7 @@ const index = ({ navigation, user, connectUser }) => {
   }
 
   function goToConnection() {
-    navigation.navigate("Connection");
+    navigation.replace("Connection");
   }
 
   return (

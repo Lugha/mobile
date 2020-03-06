@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { emitUpdateGame } from "../../../../actions/game";
@@ -9,21 +9,19 @@ const index = ({ navigation, game, emitUpdateGame }) => {
   function submitStageAnswer(key) {
     emitUpdateGame({ room: game.room, choice: key });
     if (!game.waitingNextStage) {
-      navigation.navigate("WaitingOpponent");
+      navigation.replace("WaitingOpponent");
+    } else if (game.stageFailed) {
+      navigation.replace("GameRoundResume");
     } else {
-      if (game.stageFailed) {
-        navigation.navigate("GameRoundResume");
-      } else {
-        navigation.navigate("GameStageIntro");
-      }
+      navigation.replace("GameStageIntro");
     }
   }
 
   return (
     <Stage
       submitStageAnswer={submitStageAnswer}
-      countdown={3}
-      round={Fragment.actualRound}
+      countdown={10}
+      round={game.actualRound}
       sentence={game.stageData.sentence}
       traductions={game.stageData.traductions}
     />

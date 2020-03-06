@@ -6,13 +6,19 @@ import { updateUser } from "../../actions/user";
 import Menu from "../../components/Menu";
 
 const index = ({ navigation, user, updateUser }) => {
+  if (!user || !user.username) {
+    user = {
+      username: "dev"
+    };
+  }
+
   function disconnect() {
     updateUser(null);
-    navigation.navigate("Connection");
+    navigation.replace("Connection");
   }
 
   function goToLobby() {
-    navigation.navigate("Lobby");
+    navigation.replace("Lobby");
   }
 
   return (

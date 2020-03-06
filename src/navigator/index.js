@@ -24,6 +24,7 @@ const RootStack = () => {
         screenOptions={{
           headerShown: false
         }}
+        initialRouteName="Menu"
       >
         <Stack.Screen name="Connection" component={Connection} />
         <Stack.Screen name="Registration" component={Registration} />

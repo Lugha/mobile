@@ -6,9 +6,9 @@ import RoundEnd from "../../../../components/Game/Round/Resume";
 const index = ({ navigation, game }) => {
   function endRoundOrGame() {
     if (game.actualRound === game.roundTotal) {
-      navigation.navigate("GameResume");
+      navigation.replace("GameResume");
     } else {
-      navigation.navigate("GameRoundIntro");
+      navigation.replace("GameRoundIntro");
     }
   }
 
