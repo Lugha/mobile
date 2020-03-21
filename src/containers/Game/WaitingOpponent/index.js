@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
+import { subscribeGame } from "../../../actions/game";
+
 import WaitingOpponent from "../../../components/WaitingOpponent";
 
 const index = ({ navigation, game }) => {
   const [render, setRender] = useState(false);
 
-  console.log({ render });
+  useEffect(() => {
+    console.log(game);
+  }, []);
 
   useEffect(() => {
+    console.log(game);
     if (render) {
       if (game.actualStage === 1) {
         navigation.replace("GameRoundResume");

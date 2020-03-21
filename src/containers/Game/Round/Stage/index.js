@@ -22,8 +22,8 @@ const index = ({ navigation, game, emitUpdateGame }) => {
       submitStageAnswer={submitStageAnswer}
       countdown={10}
       round={game.actualRound}
-      sentence={game.stageData.sentence}
-      traductions={game.stageData.traductions}
+      stageData={game.stageData}
+      stageType={game.stageType}
     />
   );
 };

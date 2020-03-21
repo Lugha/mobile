@@ -6,12 +6,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "stretch"
-  },
-  buttonQuit: {
-    marginLeft: "auto",
-    marginRight: 20,
-    marginTop: 20,
-    width: 100
   }
 });
 
